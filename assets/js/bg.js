@@ -45,7 +45,7 @@ function Circle() {
 };Circle.prototype.act=function(){
     this.r+=this.speed;
     if(this.r>this.max_r*0.7){
-      if(this.r>this.max_r){
+      if(this.r>=this.max_r){
         this.reinit();
       }else{
         if(this.alpha>0){
@@ -67,7 +67,7 @@ function Circle() {
         this.draw();
     }
 };Circle.prototype.draw=function(){
-    if(this.alpha<1){
+    if(this.alpha<1&&this.r<this.max_r){
         ctx.beginPath();
         ctx.arc(this.x , this.y ,this.r,0,2*Math.PI); //
         ctx.fillStyle=this.color;
