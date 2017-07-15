@@ -34,7 +34,7 @@ function _init() {
   this.max_r=J.random(10,50);
   this.speed=J.random(2,6)*0.1;
   this.alpha=J.random(2,9)*0.1;
-  this.per_a=-1;
+  this.per_a=0;
   this.color_base=((J.random(0,1)==0)?g_color:b_color);
   this.color=this.color_base+this.alpha+")";
 }
@@ -49,7 +49,7 @@ function Circle() {
         this.reinit();
       }else{
         if(this.alpha>0){
-          if(this.per_a==-1){
+          if(this.per_a==0){
             this.per_a=(this.alpha)/((this.max_r-this.r)/this.speed);
           }
           this.alpha-=this.per_a;
