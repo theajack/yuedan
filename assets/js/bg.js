@@ -4,14 +4,20 @@ var canvas = J.ct("canvas#bgCanvas");
 var _w=J.width();
 var _h=J.height();
 var _n=30;
-var ctx = canvas.getContext("2d"), canvas_width, canvas_height;
+var ctx = canvas.getContext("2d");
 var circles=new Array();
 var frame_func = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame || function(func) {
         window.setTimeout(func, 1000 / 45);
     };
+
+var cacheCanvas = document.createElement("canvas");
+var cache_ctx = cacheCanvas.getContext("2d");
+
 (function () {
     canvas.width=_w;
     canvas.height=_h;
+    cacheCanvas.width = _w;
+    cacheCanvas.height = _h;
     var _cover = J.ct("div#bgCover").css({
         width:_w+"px",
         height:_h+"px"
@@ -23,10 +29,12 @@ var frame_func = window.requestAnimationFrame || window.webkitRequestAnimationFr
     _draw();
 })();
 function _draw() {
-    ctx.clearRect(0, 0, _w, _h);
+    cache_ctx.clearRect(0, 0, _w, _h);
     circles.each(function (item) {
         item.act();
     });
+    ctx.clearRect(0, 0, _w, _h);
+    ctx.drawImage(cacheCanvas, 0, 0, _w, _h);
     frame_func(_draw);
 }
 function Circle() {
@@ -79,11 +87,11 @@ function Circle() {
         }
     };
     this.draw=function(){
-        ctx.beginPath();
-        ctx.arc(this.x , this.y ,this.r,0,2*Math.PI);
-        ctx.fillStyle=this.color;
-        ctx.fill();
-        ctx.closePath();
+        cache_ctx.beginPath();
+        cache_ctx.arc(this.x , this.y ,this.r,0,2*Math.PI);
+        cache_ctx.fillStyle=this.color;
+        cache_ctx.fill();
+        cache_ctx.closePath();
     };
 };
 window.onresize=function () {
