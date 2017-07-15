@@ -3,7 +3,7 @@ var g_color = "rgba(251,132,176,";
 var canvas = J.ct("canvas#bgCanvas");
 var _w=J.width();
 var _h=J.height();
-var _n=20;
+var _n=30;
 var ctx = canvas.getContext("2d"), canvas_width, canvas_height;
 var circles=new Array();
 (function () {
@@ -50,6 +50,7 @@ function Circle() {
             if (this.r >= this.max_r) {
                 this.stop = true;
                 this.reinit();
+                return;
             } else {
                 if (this.alpha > 0) {
                     if (this.per_a == 0) {
@@ -57,20 +58,20 @@ function Circle() {
                     }
                     this.alpha -= this.per_a;
                     if (this.alpha <= 0) {
+                        this.alpha=0;
                         this.stop = true;
                         this.reinit();
-                    } else {
-                        this.color = this.color_base + this.alpha + ")";
-                        this.draw();
+                        return;
                     }
+                    this.color = this.color_base + this.alpha + ")";
                 } else {
                     this.stop = true;
                     this.reinit();
+                    return;
                 }
             }
-        } else {
-            this.draw();
         }
+        this.draw();
     }
 };Circle.prototype.draw=function(){
     ctx.beginPath();
