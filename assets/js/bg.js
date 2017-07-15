@@ -44,40 +44,40 @@ function Circle() {
 };Circle.prototype.reinit=function(){
   _init.call(this);
 };Circle.prototype.act=function(){
-    this.r+=this.speed;
-    if(this.r>this.max_r*0.7){
-      if(this.r>=this.max_r){
-        this.stop=true;
-        this.reinit();
-      }else{
-        if(this.alpha>0){
-          if(this.per_a==0){
-            this.per_a=(this.alpha)/((this.max_r-this.r)/this.speed);
-          }
-          this.alpha-=this.per_a;
-          if(this.alpha<=0){
-              this.stop=true;
-              this.reinit();
-          }else{
-              this.color=this.color_base+this.alpha+")";
-              this.draw();
-          }
-        }else{
-            this.stop=true;
-            this.reinit();
+    if(!this.stop) {
+        this.r += this.speed;
+        if (this.r > this.max_r * 0.7) {
+            if (this.r >= this.max_r) {
+                this.stop = true;
+                this.reinit();
+            } else {
+                if (this.alpha > 0) {
+                    if (this.per_a == 0) {
+                        this.per_a = (this.alpha) / ((this.max_r - this.r) / this.speed);
+                    }
+                    this.alpha -= this.per_a;
+                    if (this.alpha <= 0) {
+                        this.stop = true;
+                        this.reinit();
+                    } else {
+                        this.color = this.color_base + this.alpha + ")";
+                        this.draw();
+                    }
+                } else {
+                    this.stop = true;
+                    this.reinit();
+                }
+            }
+        } else {
+            this.draw();
         }
-      }
-    }else{
-        this.draw();
     }
 };Circle.prototype.draw=function(){
-    if(!this.stop){
-        ctx.beginPath();
-        ctx.arc(this.x , this.y ,this.r,0,2*Math.PI);
-        ctx.fillStyle=this.color;
-        ctx.fill();
-        ctx.closePath();
-    }
+    ctx.beginPath();
+    ctx.arc(this.x , this.y ,this.r,0,2*Math.PI);
+    ctx.fillStyle=this.color;
+    ctx.fill();
+    ctx.closePath();
 };
 window.onresize=function () {
   _w=J.width();
