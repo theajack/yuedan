@@ -50,7 +50,6 @@ function Circle() {
             if (this.r >= this.max_r) {
                 this.stop = true;
                 this.reinit();
-                return;
             } else {
                 if (this.alpha > 0) {
                     if (this.per_a == 0) {
@@ -59,15 +58,11 @@ function Circle() {
                     this.alpha -= this.per_a;
                     if (this.alpha <= 0) {
                         this.alpha=0;
-                        this.stop = true;
-                        this.reinit();
-                        return;
                     }
                     this.color = this.color_base + this.alpha + ")";
                 } else {
-                    this.stop = true;
-                    this.reinit();
-                    return;
+                    this.alpha=0;
+                    this.color = this.color_base + this.alpha + ")";
                 }
             }
         }
