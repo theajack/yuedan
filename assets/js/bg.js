@@ -37,6 +37,7 @@ function _init() {
   this.per_a=0;
   this.color_base=((J.random(0,1)==0)?g_color:b_color);
   this.color=this.color_base+this.alpha+")";
+  this.stop=false;
 }
 function Circle() {
   _init.call(this);
@@ -46,6 +47,7 @@ function Circle() {
     this.r+=this.speed;
     if(this.r>this.max_r*0.7){
       if(this.r>=this.max_r){
+        this.stop=true;
         this.reinit();
       }else{
         if(this.alpha>0){
@@ -54,12 +56,14 @@ function Circle() {
           }
           this.alpha-=this.per_a;
           if(this.alpha<=0){
+              this.stop=true;
               this.reinit();
           }else{
               this.color=this.color_base+this.alpha+")";
               this.draw();
           }
         }else{
+            this.stop=true;
             this.reinit();
         }
       }
@@ -67,9 +71,9 @@ function Circle() {
         this.draw();
     }
 };Circle.prototype.draw=function(){
-    if(this.alpha<1&&this.r<this.max_r){
+    if(!this.stop){
         ctx.beginPath();
-        ctx.arc(this.x , this.y ,this.r,0,2*Math.PI); //
+        ctx.arc(this.x , this.y ,this.r,0,2*Math.PI);
         ctx.fillStyle=this.color;
         ctx.fill();
         ctx.closePath();

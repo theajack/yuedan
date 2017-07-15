@@ -164,7 +164,7 @@ body {
   width: 80%;
 }
 .input {
-  background-color: #ebfaff;
+  background-color: rgba(235, 250, 255, 0.7);
   font-size: 16px;
   color: #808080;
   border-radius: 1px;
