@@ -59,17 +59,21 @@ function Circle() {
               this.color=this.color_base+this.alpha+")";
               this.draw();
           }
+        }else{
+            this.reinit();
         }
       }
     }else{
         this.draw();
     }
 };Circle.prototype.draw=function(){
-    ctx.beginPath();
-    ctx.arc(this.x , this.y ,this.r,0,2*Math.PI); //
-    ctx.fillStyle=this.color;
-    ctx.fill();
-    ctx.closePath();
+    if(this.alpha<1){
+        ctx.beginPath();
+        ctx.arc(this.x , this.y ,this.r,0,2*Math.PI); //
+        ctx.fillStyle=this.color;
+        ctx.fill();
+        ctx.closePath();
+    }
 };
 window.onresize=function () {
   _w=J.width();
