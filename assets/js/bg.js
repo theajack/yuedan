@@ -25,7 +25,7 @@ function _draw() {
         circles.each(function (item) {
             item.act();
         });
-    },50)//
+    },100)//
 }
 function _init() {
   this.x=J.random(0,_w);
