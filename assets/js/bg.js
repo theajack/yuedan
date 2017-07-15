@@ -53,11 +53,17 @@ function Circle() {
             this.per_a=(this.alpha)/((this.max_r-this.r)/this.speed);
           }
           this.alpha-=this.per_a;
-          this.color=this.color_base+this.alpha+")";
+          if(this.alpha<=0){
+              this.reinit();
+          }else{
+              this.color=this.color_base+this.alpha+")";
+              this.draw();
+          }
         }
       }
+    }else{
+        this.draw();
     }
-    this.draw();
 };Circle.prototype.draw=function(){
     ctx.beginPath();
     ctx.arc(this.x , this.y ,this.r,0,2*Math.PI); //

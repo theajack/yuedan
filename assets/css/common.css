@@ -1,3 +1,7 @@
+input {
+  -webkit-appearance: none;
+  outline: none;
+}
 .fs-xl {
   font-size: 20px;
 }
