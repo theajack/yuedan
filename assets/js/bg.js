@@ -29,23 +29,28 @@ function _draw() {
     });
     frame_func(_draw);
 }
-function _init() {
-  this.x=J.random(0,_w);
-  this.y=J.random(0,_h);
-  this.r=0;
-  this.max_r=J.random(10,50);
-  this.speed=J.random(2,6)*0.02;
-  this.alpha=J.random(2,9)*0.1;
-  this.per_a=0;
-  this.color_base=((J.random(0,1)==0)?g_color:b_color);
-  this.color=this.color_base+this.alpha+")";
-  this.stop=false;
-
-}
 function Circle() {
-    _init.call(this);
+    this.x=J.random(0,_w);
+    this.y=J.random(0,_h);
+    this.r=0;
+    this.max_r=J.random(10,50);
+    this.speed=J.random(2,6)*0.02;
+    this.alpha=J.random(2,9)*0.1;
+    this.per_a=0;
+    this.color_base=((J.random(0,1)==0)?g_color:b_color);
+    this.color=this.color_base+this.alpha+")";
+    this.stop=false;
     this.reinit=function(){
-        _init.call(this);
+        this.x=J.random(0,_w);
+        this.y=J.random(0,_h);
+        this.r=0;
+        this.max_r=J.random(10,50);
+        this.speed=J.random(2,6)*0.02;
+        this.alpha=J.random(2,9)*0.1;
+        this.per_a=0;
+        this.color_base=((J.random(0,1)==0)?g_color:b_color);
+        this.color=this.color_base+this.alpha+")";
+        this.stop=false;
     };
     this.act=function(){
         if(!this.stop) {
