@@ -3,7 +3,7 @@ var g_color = "rgba(251,132,176,";
 var canvas = J.ct("canvas#bgCanvas");
 var _w=J.width();
 var _h=J.height();
-var _n=1;
+var _n=30;
 var ctx = canvas.getContext("2d"), canvas_width, canvas_height;
 var circles=new Array();
 (function () {
@@ -25,14 +25,14 @@ function _draw() {
         circles.each(function (item) {
             item.act();
         });
-    },700)//50
+    },50)//
 }
 function _init() {
   this.x=J.random(0,_w);
   this.y=J.random(0,_h);
   this.r=0;
-  this.max_r=J.random(10,20);//10 50
-  this.speed=J.random(2,6)*0.3;
+  this.max_r=J.random(10,50);
+  this.speed=J.random(2,6)*0.1;
   this.alpha=J.random(2,9)*0.1;
   this.per_a=0;
   this.color_base=((J.random(0,1)==0)?g_color:b_color);
@@ -74,7 +74,6 @@ function Circle() {
         this.draw();
     }
 };Circle.prototype.draw=function(){
-    J.show(this.alpha.toFixed(3)+";"+this.r.toFixed(3));
     ctx.beginPath();
     ctx.arc(this.x , this.y ,this.r,0,2*Math.PI);
     ctx.fillStyle=this.color;
