@@ -60,7 +60,7 @@ input {
   text-align: left;
 }
 .center {
-  margin: 0 auto;
+  margin: 0 auto!important;
 }
 .bg-boy {
   background-color: #57baff;
@@ -131,8 +131,8 @@ input {
 body {
   background-color: #f8f8fa;
   font-size: 14px;
-  max-width: 600px;
-  margin: 0 auto;
+  max-width: 400px;
+  margin: 0 auto!important;
 }
 #bgCanvas,
 #bgCover {
@@ -327,7 +327,7 @@ body {
 .big-logo {
   width: 60%;
   display: block;
-  margin: 0 auto;
+  margin: 0 auto!important;
 }
 .login-func-w {
   width: 100%;

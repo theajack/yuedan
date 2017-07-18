@@ -3,7 +3,7 @@ var g_color = "rgba(251,132,176,";
 var canvas = J.ct("canvas#bgCanvas");
 var _w=J.width();
 var _h=J.height();
-var _n=30;
+var _n=10;
 var ctx = canvas.getContext("2d");
 var circles=new Array();
 var frame_func = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame || function(func) {
@@ -26,20 +26,27 @@ var cache_ctx = cacheCanvas.getContext("2d");
     for(var i=0;i<_n;i++){
       circles.push(new Circle());
     }
+    J.tag("html").clk(function(e){
+        circles.push(new Circle(e.pageX,e.pageY));
+    });
     _draw();
 })();
 function _draw() {
     cache_ctx.clearRect(0, 0, _w, _h);
     circles.each(function (item) {
-        item.act();
+        if(item.ban==true){
+            item=null;
+        }else{
+            item.act();
+        }
     });
     ctx.clearRect(0, 0, _w, _h);
     ctx.drawImage(cacheCanvas, 0, 0, _w, _h);
     frame_func(_draw);
 }
-function Circle() {
-    this.x=J.random(0,_w);
-    this.y=J.random(0,_h);
+function Circle(x,y) {
+    this.x=J.checkArg(x,J.random(0,_w));
+    this.y=J.checkArg(y,J.random(0,_h));
     this.r=0;
     this.max_r=J.random(10,50);
     this.speed=J.random(2,6)*0.02;
@@ -48,17 +55,20 @@ function Circle() {
     this.color_base=((J.random(0,1)==0)?g_color:b_color);
     this.color=this.color_base+this.alpha+")";
     this.stop=false;
+    this.ban=false;
     this.reinit=function(){
-        this.x=J.random(0,_w);
-        this.y=J.random(0,_h);
-        this.r=0;
-        this.max_r=J.random(10,50);
-        this.speed=J.random(2,6)*0.02;
-        this.alpha=J.random(2,9)*0.1;
-        this.per_a=0;
-        this.color_base=((J.random(0,1)==0)?g_color:b_color);
-        this.color=this.color_base+this.alpha+")";
-        this.stop=false;
+        this.ban=true;
+        circles.push(new Circle());
+        /*this.x=J.random(0,_w);
+         this.y=J.random(0,_h);
+         this.r=0;
+         this.max_r=J.random(10,50);
+         this.speed=J.random(2,6)*0.02;
+         this.alpha=J.random(2,9)*0.1;
+         this.per_a=0;
+         this.color_base=((J.random(0,1)==0)?g_color:b_color);
+         this.color=this.color_base+this.alpha+")";
+         this.stop=false;*/
     };
     this.act=function(){
         if(!this.stop) {
@@ -95,12 +105,14 @@ function Circle() {
     };
 };
 window.onresize=function () {
-  _w=J.width();
-  _h=J.height();
-  canvas.width=_w;
-  canvas.height=_h;
-  J.id("bgCover").css({
-    width:_w+"px",
-    height:_h+"px"
-  });
+    _w=J.width();
+    _h=J.height();
+    cacheCanvas.width=_w;
+    cacheCanvas.height=_h;
+    canvas.width=_w;
+    canvas.height=_h;
+    J.id("bgCover").css({
+        width:_w+"px",
+        height:_h+"px"
+    });
 }
