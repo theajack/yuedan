@@ -312,4 +312,68 @@ function freeBody(){
 }
 window.onbeforeunload=stopRefresh;//关闭前的事件 
 
+function toggleRadio(obj) {
+  obj.findClass("radio-o").toggleClass("active");
+}
+function toggleViewPw(obj) {
+  var input=obj.next();
+  if(input.attr("type")=="text"){
+      input.attr("type","password");
+      obj.attr("src","assets/images/icon/pw_show_b.png");
+  }else{
+      input.attr("type","text");
+      obj.attr("src","assets/images/icon/pw_hide_b.png");
+  }
+}
+function initValid() {
+    J.attr("jet-valid").exist(function(inputs){
+        inputs.clk(function(){
+            stopb(event);
+            this.removeClass("unpass").next().removeClass("unpass");
+        })
+        J.banDefault();
+        J.banValidShow();
+        J.onOneFail(function(input,err){
+            input.addClass("unpass").next().addClass("unpass").txt(err);
+        });
+    })
+}
 
+var theme="boy",theme_rep=(theme=="boy")?"_b.":"_g.";
+function setTheme() {
+    var style=".theme{background-color:"+((theme=="boy")?"#57baff":"#fb84b0")+"}";
+    J.tag("head").append(J.ct("style").txt(style));
+    J.cls("theme-img").each(function (item) {
+        setThemeImg(item);
+    });
+}
+function setThemeImg(item) {
+    item.attr("src",item.attr("src").replace("_w.",theme_rep));
+}
+function resetThemeImg(item) {
+    item.attr("src",item.attr("src").replace(theme_rep,"_w."));
+}
+function changeType(obj){
+    active(obj,"theme",function (item) {
+        setThemeImg(item.child(0));
+    });
+    resetThemeImg(obj.child(0));
+}
+function active(obj,name,call){
+  var active=obj.parent().findClass(name);
+  active.removeClass(name);
+  call(active);
+  obj.addClass(name);
+}
+function openNavi(){
+  J.body().addClass("offset");
+  J.cls("cover").css("display","block");
+  J.cls("navi").addClass("offset");
+}
+function closeNavi() {
+    J.body().removeClass("offset");
+    J.cls("navi").removeClass("offset");
+        setTimeout(function(){
+        J.cls("cover").css("display","none");
+    },400);
+}

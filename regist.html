@@ -28,17 +28,17 @@
             </div>
             <div class="input-w">
                 <img src="assets/images/icon/login_pw_b.png" alt="" class="icon">
-                <img src="assets/images/icon/pw_show_b.png" alt="" class="icon tail">
+                <img src="assets/images/icon/pw_show_b.png" alt="" class="icon tail" onclick="toggleViewPw(this)">
                 <input type="password" class="input big has-icon" placeholder="请输入密码">
                 <span class="valid tail">输入有误</span>
             </div>
         </div>
         <div class="login-func-w regist">
-            <div class="btn">注册</div>
+            <div class="btn" onclick="regist()">注册</div>
             <div class="info-text small">注册即表示您同意《<span class="link">约单协议</span>》</div>
         </div>
     </div>
-    <div class="copyright">©2017 Yuedanwang All Right Reserved</div>
+    <div class="copyright">© 2017 Yuedanwang All Right Reserved</div>
     <script type="text/javascript" src="assets/js/less.min.js"></script>
     <script type="text/javascript" src="assets/js/jetter2.0.js"></script>
     <script type="text/javascript" src="assets/js/common.js"></script>
@@ -47,6 +47,9 @@
         J.ready(function(){
             checkMiddle(30);
         });
+        function regist() {
+            J.jump("finish.html");
+        }
 
     </script>
 </body>
