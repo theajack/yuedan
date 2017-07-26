@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta content="telephone=no" name="format-detection">
+    <title>约单网--最真实的大学校园交友网站</title>
+    <link rel="icon" href="assets/images/icon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/theajack.less"/>
+    <link rel="stylesheet" type="text/less" href="assets/css/common.less"/>
+    <link rel="stylesheet" type="text/less" href="assets/css/main.less"/>
+    <head>
+    <body>
+        <div class="header theme">
+            <img class="img" src="assets/images/yuedan_s.png" alt="">
+            <div class="search-w">
+                <input type="text" class="input search">
+                <select name="" class="input select" id="">
+                    <option value="">全部</option>
+                    <option value="">约单</option>
+                    <option value="">帖子</option>
+                    <option value="">拍卖</option>
+                </select>
+                <div class="search-btn">
+                    <img src="assets/images/icon/search_w.png" alt=""/>
+                </div>
+            </div>
+            <img class="img tail" onclick="openNavi()" src="assets/images/icon/navi_open.png" alt="">
+        </div>
+        <div class="type">
+            <div class="type-item theme">
+                <img src="assets/images/icon/all_w.png" alt=""/>
+                <span>全部</span>
+            </div>
+            <div class="type-item">
+                <img class="theme-img" src="assets/images/icon/order_w.png" alt=""/>
+                <span>约单</span>
+            </div>
+            <div class="type-item">
+                <img class="theme-img" src="assets/images/icon/post_w.png" alt=""/>
+                <span>帖子</span>
+            </div>
+            <div class="type-item">
+                <img class="theme-img" src="assets/images/icon/auction_w.png" alt=""/>
+                <span>拍卖</span>
+            </div>
+        </div>
+
+        <div class="cover" onclick="closeNavi()"></div>
+        <div class="navi theme">
+            <div class="navi-item"></div>
+        </div>
+        <script type="text/javascript" src="assets/js/less.min.js"></script>
+        <script type="text/javascript" src="assets/js/jetter2.0.js"></script>
+        <script type="text/javascript" src="assets/js/common.js"></script>
+        <script type="text/javascript">
+            J.ready(function () {
+                setTheme();
+                J.cls("type-item").clk("changeType(this)");
+            });
+        </script>
+    </body>
+</html>
