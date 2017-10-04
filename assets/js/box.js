@@ -204,8 +204,6 @@
       oncancel:function(){},
       checkList:[],
       bind:null,
-      _timer:null,
-      _topVal:null,
       open:function(opt){//onsubmit oncancel bind type
         this.onsubmit=J.toFunc(opt.onsubmit);
         this.oncancel=J.toFunc(opt.oncancel);
@@ -222,10 +220,6 @@
           this.ele.findClass("d-i").on("scroll","Box.date._onscroll(this)");
         }
         Box.open("datebox");
-        J.delay(function(){
-          Box.date._timer=null;
-          Box.date._topVal=null;
-        },300);
         this.init(J.checkArg(opt.type,"date"));
       },close:function(){
         Box.close("datebox");
@@ -246,13 +240,13 @@
           this.bind.content(data);
         }
       },_onscroll:function(obj){
-        if(this._timer == null){
-          this._timer = setInterval(function(){
-            if(obj.scrollTop == Box.date._topVal){
+        if(obj._timer == null){
+          obj._timer = setInterval(function(){
+            if(obj.scrollTop == obj._topVal){
               var sh=50;
-              clearInterval(Box.date._timer);  
-              Box.date._timer = null;  
-              var top=obj.scroll();
+              clearInterval(obj._timer);  
+              obj._timer = null;  
+              var top=obj.scrollTop;
               var a=top%sh;
               if(a>=sh/2){
                 top+=(sh-a);
@@ -266,7 +260,7 @@
             }
           }, 100);  
         }
-        this._topVal = obj.scrollTop;  
+        obj._topVal = obj.scrollTop;  
       },init:function(type){
         var d = new Date();
         var yy=d.getFullYear();
@@ -308,8 +302,6 @@
       checkList:[],
       bind:null,
       type:"",
-      _timer:null,
-      _topVal:null,
       open:function(opt){//items onsubmit oncancel bind type
         this.onsubmit=J.toFunc(opt.onsubmit);
         this.oncancel=J.toFunc(opt.oncancel);
@@ -371,12 +363,12 @@
           }
         }
       },_onscroll:function(obj){
-        if(this._timer == null){
-          this._timer = setInterval(function(){
-            if(obj.scrollTop == Box.cascade._topVal){
+        if(obj._timer == null){
+          obj._timer = setInterval(function(){
+            if(obj.scrollTop == obj._topVal){
               var sh=50;
-              clearInterval(Box.cascade._timer);  
-              Box.cascade._timer = null;  
+              clearInterval(obj._timer);  
+              obj._timer = null;  
               var top=obj.scroll();
               var a=top%sh;
               if(a>=sh/2){
@@ -403,7 +395,7 @@
             }
           }, 100);  
         }
-        this._topVal = obj.scrollTop;  
+        obj._topVal = obj.scrollTop;  
       },_active:function(obj,cls){
         obj.bro().findClass("active").removeClass("active");
         obj.addClass("active");
