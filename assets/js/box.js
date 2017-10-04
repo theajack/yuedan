@@ -1,6 +1,35 @@
 //弹出框
 (function(){
-  J.body().append(J.ct("div.box-cover"));
+  J.ready(function(){
+    J.body().append(J.ct("div.box-cover"));
+    J.attr("box-bind").each(function(item){
+      item.attr("readonly","true");
+      var type=item.attr("box-bind");
+      if(type=="city"){
+        item.clk(function(){
+          Box.cascade.open({
+            items:Box.data.province,
+            subItems:Box.data.city,
+            bind:item
+          });
+        });
+      }else if(type=="date"||type=="datetime"){
+        item.clk(function(){
+          Box.date.open({
+            type:type,
+            bind:item
+          });
+        });
+      }else{
+        item.clk(function(){
+          Box.cascade.open({
+            items:Box.data[type],
+            bind:item
+          });
+        });
+      }
+    });
+  });
   window.Box={
     config:{
       fixBody:true
@@ -271,8 +300,8 @@
         var list=J.cls("datebox-wrapper").findClass("d-i")
         if(type!="date"){
           num=5;
-          list[3].removeClass("hide");
-          list[4].removeClass("hide");
+          list[3].removeClass("hide").scrollTop=0;
+          list[4].removeClass("hide").scrollTop=0;
           this.checkList=[yy,mm,dd,"00","00"];
         }else{
           list[3].addClass("hide");
@@ -311,7 +340,6 @@
         }
         this.type=J.checkArg(opt.type,"");
         this.checkList[0]=opt.items[0];
-        this.checkList[1]=opt.subItems[0][0];
         if(!this.ele.exist()){
           _addCascadeBox();
           this.ele=J.cls("cascadebox-wrapper");
@@ -324,32 +352,35 @@
           if(i==0){_sel.addClass("active");}
           ele1.append(_sel);
         });
-        
-        var ele2=J.ct("div.c-i").on("scroll","Box.cascade._onscroll(this)");
-        opt.subItems.each(function(item,j){
-          var _sub=J.ct("div.ci-w");
-          if(j==0){_sub.addClass("active");}
-          item.each(function(sel_item,k){
-            var _sel=J.ct("div").txt(sel_item);
-            if(k==0){_sel.addClass("active");}
-            _sub.append(_sel);
+        if(opt.subItems!=undefined){
+          this.checkList[1]=opt.subItems[0][0];
+          var ele2=J.ct("div.c-i").on("scroll","Box.cascade._onscroll(this)");
+          opt.subItems.each(function(item,j){
+            var _sub=J.ct("div.ci-w");
+            if(j==0){_sub.addClass("active");}
+            item.each(function(sel_item,k){
+              var _sel=J.ct("div").txt(sel_item);
+              if(k==0){_sel.addClass("active");}
+              _sub.append(_sel);
+            });
+            ele2.append(_sub);
           });
-          ele2.append(_sub);
-        });
-        this.ele.child(1).append([ele1,ele2]);
-        J.cls("c-i").css("width",(100/opt.items.length)+"%");
+          this.ele.child(1).append([ele1,ele2]);
+          J.cls("c-i").css("width","50%");
+        }else{
+          this.ele.child(1).append(ele1);
+          J.cls("c-i").css("width","100%");
+        }
         Box.open("cascadebox");
       },close:function(){
         Box.close("cascadebox");
+        this.checkList.empty();
       },cancel:function(){
-        this.close();
         this.oncancel();
-      },submit:function(){
         this.close();
+      },submit:function(){
         var data;
-        if(this.type=="date"){
-          data=this.checkList.join("-");
-        }else if(this.type==""||this.type=="last"){
+        if(this.type==""||this.type=="last"){
           data=this.checkList.last();
         }else{
           data=this.checkList;
@@ -362,6 +393,7 @@
             this.bind.content(data);
           }
         }
+        this.close();
       },_onscroll:function(obj){
         if(obj._timer == null){
           obj._timer = setInterval(function(){
@@ -383,9 +415,11 @@
                 if(Box.cascade.checkList[index]!=obj.child(i).txt()){
                   Box.cascade.checkList[index]=obj.child(i).txt();
                   Box.cascade._active(obj.child(i));//第一栏的item
-                  Box.cascade._active(obj.next().child(i));//第二栏对应选择哪一个
-                  Box.cascade._active(obj.next().child(i).child(0));//初始化第二栏的active
-                  obj.next().scrollTop=0;//初始化第二栏的top
+                  if(Box.cascade.checkList.length==2){
+                    Box.cascade._active(obj.next().child(i));//第二栏对应选择哪一个
+                    Box.cascade._active(obj.next().child(i).child(0));//初始化第二栏的active
+                    obj.next().scrollTop=0;//初始化第二栏的top
+                  }
                 }
               }else{
                 var _active=obj.child().findClass("active").child(i);
@@ -499,8 +533,57 @@
       }
     },
     data:{
-      city:[],
-      date:[]
+      province:["北京","上海","重庆","天津","广东","江苏","湖北","陕西","四川","辽宁","吉林","山东","浙江","广西","安徽","河北","山西","内蒙","福建","江西","河南","湖南","海南","贵州","黑龙江","云南","西藏","甘肃","青海","宁夏","新疆","香港","澳门","台湾省","国外"],
+      city:[
+        ["东城","西城","海淀","朝阳","丰台","门头沟","石景山","房山","通州","顺义","昌平","大兴","怀柔","平谷","延庆","密云"]
+        ,["黄浦","徐汇","长宁","静安","普陀","虹口","杨浦","闵行","宝山","嘉定","浦东","金山","松江","青浦","奉贤","崇明"]
+        ,["万州区","涪陵区","渝中区","大渡口区","江北区","沙坪坝区","九龙坡区","南岸区","北碚区","万盛区","双桥区","渝北区","巴南区","黔江区","长寿区","江津区","合川区","永川区","南川区"]
+        ,["和平区","河东区","河西区","河北区","南开区","红桥区","东丽区","津南区","西青区","北辰区","武清区","宁河区","静海区","宝坻区","滨海新区"]    
+        ,["广州","韶关","深圳","珠海","汕头","佛山","江门","湛江","茂名","肇庆","惠州","梅州","汕尾","河源","阳江","清远","东莞","中山","潮州","揭阳","云浮","台山","普宁","南沙开发区","开平","龙川","鹤山"]
+        ,["南京","苏州","常州","昆山","常熟","无锡","江阴","徐州","南通","淮安","盐城","扬州","镇江","泰州","靖江","宿迁","句容","宜兴","如皋","丹阳","扬中","高邮","启东","泰兴","溧阳","盱眙","通州","金湖","太仓市","张家港","连云港"]
+        ,["武汉","黄石","十堰","宜昌","襄阳","鄂州","荆门","孝感","荆州","黄冈","咸宁","随州","恩施","公安","武穴","天门","仙桃","潜江","宜城","神农架"]
+        ,["西安","铜川","宝鸡","咸阳","渭南","延安","汉中","榆林","安康","商洛","兴平","杨凌"]
+        ,["成都","自贡","泸州","德阳","绵阳","广元","遂宁","内江","乐山","南充","眉山","宜宾","广安","达州","雅安","巴中","资阳","阿坝","甘孜","凉山","峨眉","西昌","简阳","攀枝花"]
+        ,["大连","沈阳","鞍山","抚顺","本溪","丹东","锦州","营口","阜新","辽阳","盘锦","铁岭","朝阳","葫芦岛","兴城","海城","昌图","开原"]
+        ,["长春","珲春","四平","辽源","通化","白山","松原","白城","延边","吉林市","公主岭"]
+        ,["济南","青岛","淄博","枣庄","东营","烟台","潍坊","济宁","泰安","威海","日照","莱芜","临沂","德州","聊城","滨州","菏泽","荣成","黄岛","乳山","城阳","即墨","肥城","兖州","海阳","胶州","胶南","平度","莱西"]
+        ,["杭州","宁波","温州","嘉兴","湖州","绍兴","金华","衢州","舟山","台州","丽水","龙泉","义乌","平湖","永康","东阳","嘉善","余姚","慈溪","乐清","永嘉","桐乡","瑞安","温岭","上虞","诸暨","海宁","宁海","三门","德清","象山","方家山","玉环县"]
+        ,["南宁","柳州","桂林","梧州","北海","防城港","钦州","贵港","玉林","百色","贺州","河池","来宾","崇左"]
+        ,["合肥","芜湖","蚌埠","淮南","马鞍山","淮北","铜陵","安庆","黄山","滁州","阜阳","宿州","巢湖","六安","亳州","池州","宣城","凤阳","广德","宿松"]
+        ,["石家庄","唐山","秦皇岛","邯郸","邢台","保定","张家口","承德","沧州","廊坊","衡水","燕郊开发区","固安","遵化","香河","三河"]
+        ,["太原","大同","阳泉","长治","晋城","朔州","晋中","运城","忻州","临汾","吕梁","和顺","永济市"]
+        ,["呼和浩特","包头","乌海","赤峰","通辽","鄂尔多斯","呼伦贝尔","兴安盟","锡林郭勒盟","乌兰察布","巴彦淖尔","阿拉善盟","乌审旗","满洲里"]
+        ,["福州","厦门","莆田","三明","泉州","漳州","南平","龙岩","宁德","福安","晋江","泉港区"]
+        ,["南昌","萍乡","九江","新余","鹰潭","赣州","吉安","宜春","抚州","上饶","景德镇"]
+        ,["郑州","开封","洛阳","平顶山","安阳","鹤壁","新乡","焦作","濮阳","许昌","漯河","三门峡","南阳","商丘","信阳","周口","驻马店","济源","西平","长葛"]
+        ,["长沙","株洲","湘潭","衡阳","邵阳","岳阳","常德","张家界","益阳","郴州","永州","怀化","娄底","湘西"]
+        ,["海口","三亚","洋浦市","琼海","儋州","五指山","文昌","万宁","东方","定安","屯昌","澄迈","临高","琼中","保亭","白沙","昌江","乐东","陵水"]
+        ,["贵阳","六盘水","遵义","安顺","铜仁","黔西南","毕节","黔东南","黔南"]
+        ,["哈尔滨","齐齐哈尔","鸡西","鹤岗","双鸭山","大庆","伊春","佳木斯","七台河","牡丹江","黑河","绥化","大兴安岭","安达","双城","尚志","绥芬河","肇东市"]
+        ,["昆明","曲靖","玉溪","保山","昭通","楚雄","红河","文山","思茅","西双版纳","大理","德宏","丽江","怒江","迪庆","临沧","普洱"]
+        ,["拉萨","昌都","山南","日喀则","那曲","阿里","林芝"]
+        ,["兰州","嘉峪关","金昌","白银","天水","武威","张掖","平凉","酒泉","庆阳","定西","陇南","临夏","甘南"]
+        ,["西宁","海东","海北","黄南","海南州","果洛","玉树","海西"]
+        ,["银川","石嘴山","吴忠","固原","中卫"]
+        ,["乌鲁木齐","克拉玛依","吐鲁番","哈密","昌吉","博尔塔拉","巴音郭楞","阿克苏","克孜勒苏","喀什","和田","伊犁","塔城","阿勒泰","石河子","奎屯市","乌苏","阿拉尔","图木舒克","五家渠"]
+        ,["香港"]
+        ,["澳门"]
+        ,["台湾省"]
+        ,["英国","美国","法国","德国","澳大利亚","白俄罗斯","比利时","巴西","加拿大","芬兰","爱尔兰","以色列","意大利","日本","韩国","新加坡","西班牙","瑞典","瑞士","泰国","越南","其他"] 
+      ],
+      sex:["男","女"],
+      school:["同济大学"],
+      schoolYear:[2008,2009,2010,2012,2013,2014,2015,2016,2017],
+      schoolPart:["四平路校区","嘉定校区","沪北校区","沪西校区"],
+      education:["本科","硕士研究生","博士研究生","专科","高职","教职人员"],
+      identity:["学生","老师","教职人员"],
+      hobby:["K歌","电影","追剧","明星","体育","健身","学术","交友","美食","旅游","上网","游戏","摄影","艺术","其他"],
+      orderType:["K歌","电影","体育","学习","交友","美食","旅游","上网","游戏","考试","看病","摄影","其他"],
+      pay:["受邀者请我","我请受邀者","各自买单","AA制","免费项目","面议"],
+      inviteSex:["男","女","不限"],
+      topic:["明星娱乐","学习考试","电竞游戏","拜师求艺","体育健身","旅游探险","美图美照","电子产品","其他"],
+      auction:["电子产品","生活用品","学习用品","体育用品","票券类物品","虚拟物品","游戏相关","其他"],
+      bool:["是","否"]
     }
   }
   function _addTextBox(){
@@ -577,7 +660,7 @@
     J.body().append(J.ct("div.search-wrapper.theme").html('\
       <div class="s-i-w search"><input type="text" class="input theme-text theme-border"/></div>\
       <div class="s-i-w select">\
-        <input type="text" class="input theme-text theme-border" value="'+def+'" onclick="Box.search.openSelect(this)"/>\
+        <input type="text" class="input theme-text theme-border" readonly="true" value="'+def+'" onclick="Box.search.openSelect(this)"/>\
         <i class="icon icon-sort-down theme-text"></i>\
       </div>\
       <i class="icon icon-search search-img search" onclick="Box.search.search()"></i>\
