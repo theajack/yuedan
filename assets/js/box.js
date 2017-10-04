@@ -2,29 +2,45 @@
 (function(){
   J.ready(function(){
     J.body().append(J.ct("div.box-cover"));
-    J.attr("box-bind").each(function(item){
-      item.attr("readonly","true");
-      var type=item.attr("box-bind");
-      if(type=="city"){
-        item.clk(function(){
+    J.attr("box-bind").each(function(obj){//box-bind="type:item[,item2]"
+      obj.attr("readonly","true");
+      var type=obj.attr("box-bind").split(":")[0];
+      var item=obj.attr("box-bind").split(":")[1];
+      if(type=="single"){
+        obj.clk(function(){
+          Box.cascade.open({
+            items:Box.data[item],
+            bind:obj
+          });
+        });
+      }else if(type=="cascade"){
+        obj.clk(function(){
+          Box.cascade.open({
+            items:Box.data[item.split(":")[0]],
+            subItems:Box.data[item.split(":")[1]],
+            bind:obj
+          });
+        });
+      }else if(type=="multi"){
+        obj.clk(function(){
+          Box.multi.open({
+            items:Box.data[item],
+            bind:obj
+          });
+        });
+      }else if(type=="date"){
+        obj.clk(function(){
+          Box.date.open({
+            type:type,
+            bind:obj
+          });
+        });
+      }else if(type=="city"){
+        obj.clk(function(){
           Box.cascade.open({
             items:Box.data.province,
             subItems:Box.data.city,
-            bind:item
-          });
-        });
-      }else if(type=="date"||type=="datetime"){
-        item.clk(function(){
-          Box.date.open({
-            type:type,
-            bind:item
-          });
-        });
-      }else{
-        item.clk(function(){
-          Box.cascade.open({
-            items:Box.data[type],
-            bind:item
+            bind:obj
           });
         });
       }

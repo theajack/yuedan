@@ -46,7 +46,7 @@
         </div>
         <div class="input-w">
             <i class="icon icon-venus"></i>
-            <input type="text" class="input big has-icon" box-bind="sex" placeholder="性别">
+            <input type="text" class="input big has-icon" box-bind="single:sex" placeholder="性别">
         </div>
         <div class="input-w">
             <i class="icon icon-calendar"></i>
@@ -58,7 +58,7 @@
         </div>
         <div class="input-w">
             <i class="icon icon-home"></i>
-            <input type="text" class="input big has-icon" placeholder="所在校区" box-bind="schoolPart" j-name="area"/>
+            <input type="text" class="input big has-icon" placeholder="所在校区" box-bind="single:schoolPart" j-name="area"/>
         </div>
         <div class="input-w">
             <i class="icon icon-archive"></i>
@@ -74,23 +74,23 @@
         </div>
         <div class="input-w">
             <i class="icon icon-bookmark"></i>
-            <input type="text" class="input big has-icon" j-name="education" placeholder="学历" box-bind="education">
+            <input type="text" class="input big has-icon" j-name="education" placeholder="学历" box-bind="single:education">
         </div>
         <div class="input-w">
             <i class="icon icon-calendar"></i>
-            <input type="text" class="input big has-icon" j-name="schoolYear" box-bind="schoolYear" placeholder="入学年份">
+            <input type="text" class="input big has-icon" j-name="schoolYear" box-bind="single:schoolYear" placeholder="入学年份">
         </div>
         <div class="input-w">
             <i class="icon icon-list-alt"></i>
-            <input type="text" class="input big has-icon" placeholder="身份" box-bind="identity">
+            <input type="text" class="input big has-icon" placeholder="身份" box-bind="single:identity">
         </div>
         <div class="input-w">
             <i class="icon icon-heart"></i>
-            <input type="text" class="input big has-icon" placeholder="兴趣爱好" box-bind="hobby" onclick="bindMulti(this)">
+            <input type="text" class="input big has-icon" placeholder="兴趣爱好" box-bind="multi:hobby" onclick="bindMulti(this)">
         </div>
         <div class="input-w">
             <i class="icon icon-star-half-full"></i>
-            <input type="text" class="input big has-icon" placeholder="是否单身" box-bind="bool">
+            <input type="text" class="input big has-icon" placeholder="是否单身" box-bind="single:bool">
         </div>
         <div class="input-w">
             <i class="icon icon-edit-sign"></i>
