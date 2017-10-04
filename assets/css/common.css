@@ -1,129 +1,6 @@
-/*http://www.theajack.com*/
-::selection {
-  background-color: #aaa;
-  color: #fff;
-}
-::-moz-selection {
-  background-color: #aaa;
-  color: #fff;
-}
-* {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
-:before,
-:after {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
-html {
-  width: 100%;
-  height: 100%;
-}
-body {
-  background-color: #fff;
-  padding: 5px 0;
-  width: 100%;
-  height: auto;
-  color: #fff;
-  font-family: "Microsoft Yahei", "Open Sans", Arial, sans-serif;
-  line-height: 22px;
-  margin: 0;
-  font-size: 14px;
-  overflow-x: hidden;
-  overflow-y: scroll;
-}
-.clearfix:after {
-  clear: both;
-}
-.clearfix:before,
-.clearfix:after {
-  display: table;
-  content: " ";
-}
-body {
-  margin: 0!important;
-  padding: 0;
-  max-width: 600px;
-}
-.header {
-  position: relative;
-  border-bottom: 1px solid #d9d9d9;
-  height: 40px;
-}
-.header .img {
-  position: absolute;
-  top: 0;
-  left: 2px;
-  height: 40px;
-}
-.header .img.tail {
-  left: inherit;
-  right: 5px;
-}
-.header .search-w {
-  padding: 5px 40px 5px 80px;
-}
-.header .search-w .input {
-  width: 50px;
-  background-color: #ffffff;
-  border: 1px solid #d9d9d9;
-  height: 30px;
-  float: left;
-}
-.header .search-w .input.search {
-  width: 50%;
-}
-.header .search-w .input.select {
-  width: 30%;
-}
-.header .search-w .search-btn {
-  width: 20%;
-  height: 30px;
-  float: left;
-  padding-top: 2px;
-  text-align: center;
-  border: 1px solid #d9d9d9;
-}
-.header .search-w .search-btn img {
-  height: 30px;
-  position: relative;
-  top: -3px;
-}
-.header.boy {
-  background-color: #57baff;
-}
-.type {
-  height: 40px;
-  border-bottom: 1px solid #d9d9d9;
-  text-align: center;
-  color: #808080;
-}
-.type .type-item {
-  width: 25%;
-  float: left;
-  border-right: 1px solid #d9d9d9;
-  height: 40px;
-  line-height: 40px;
-  font-size: 18px;
-}
-.type .type-item:last-child {
-  border-right: none;
-}
-.type .type-item.theme {
-  color: #fff;
-}
-.type .type-item img {
-  height: 26px;
-  margin-top: 7px;
-}
-.type .type-item span {
-  position: relative;
-  top: -6px;
-}
-input {
+
+input,
+select {
   -webkit-appearance: none;
   outline: none;
 }
@@ -187,44 +64,47 @@ input {
 .center {
   margin: 0 auto!important;
 }
+
+/* // #1795f9 #007cf0 */
+/* // #EE5857 #1795f9 */
 .bg-boy {
-  background-color: #57baff;
+  background-color: #1795f9!important;
 }
 .border-boy {
-  border: 1px solid #57baff;
+  border: 1px solid #1795f9!important;
 }
 .fc-boy {
-  color: #57baff;
+  color: #1795f9!important;
 }
 .bg-l-boy {
-  background-color: #ebfaff;
+  background-color: #0785e9!important;
 }
 .bg-girl {
-  background-color: #fb84b0;
+  background-color: #EE5857!important;
 }
 .border-girl {
-  border: 1px solid #fb84b0;
+  border: 1px solid #EE5857!important;
 }
 .fc-girl {
-  color: #fb84b0;
+  color: #EE5857!important;
 }
 .bg-l-girl {
-  background-color: #ffe9f4;
+  background-color: #ffe9f4!important;
 }
 .fc-white {
-  color: #fff;
+  color: #fff!important;
 }
 .fc-dark {
-  color: #262626;
+  color: #262626!important;
 }
 .fc-gray {
-  color: #808080;
+  color: #808080!important;
 }
 .fc-l-gray {
-  color: #a6a6a6;
+  color: #a6a6a6!important;
 }
 .fc-xl-gray {
-  color: #d9d9d9;
+  color: #d9d9d9!important;
 }
 .block {
   display: block;
@@ -253,11 +133,16 @@ input {
 .pointer {
   cursor: pointer;
 }
+.overflow-hide{
+  
+}
 body {
   background-color: #f8f8fa;
   font-size: 14px;
-  max-width: 300px;
+  /* max-width: 600px; */
+  padding:0;
   margin: 0 auto!important;
+  font-family:microsoft YAHEI!important;
 }
 #bgCanvas,
 #bgCover {
@@ -273,7 +158,7 @@ body {
   background-color: rgba(230, 230, 235, 0.4);
 }
 .btn {
-  background-color: #57baff;
+  background-color: #1795f9;
   font-size: 16px;
   color: #fff;
   cursor: pointer;
@@ -282,27 +167,24 @@ body {
   line-height: 40px;
   text-align: center;
 }
-.btn:hover {
-  background-color: #47aaef;
-}
 .btn:active {
-  background-color: #279acf;
+  background-color: #0373dc;
 }
 .btn.girl {
-  background-color: #fb84b0;
-}
-.btn.girl:hover {
-  background-color: #47aaef;
+  background-color: #EE5857;
 }
 .btn.girl:active {
-  background-color: #279acf;
+  background-color: #d65251;
+}
+.nobg-btn:active{
+  background-color:rgba(255,255,255,0.3)
 }
 .input {
   background-color: rgba(235, 250, 255, 0.7);
   font-size: 16px;
   color: #808080;
   border-radius: 1px;
-  border: 1px solid #57baff;
+  border: 1px solid #1795f9;
   width: 200px;
   height: 40px;
   line-height: 40px;
@@ -310,11 +192,11 @@ body {
   outline: none;
 }
 .input:active {
-  border: 1px solid #57baff;
+  border: 1px solid #1795f9;
 }
 .input.girl {
   background-color: #ffe9f4;
-  border: 1px solid #fb84b0;
+  border: 1px solid #EE5857;
 }
 .input.big {
   width: 100%;
@@ -329,14 +211,14 @@ body {
 }
 .input-w .icon {
   position: absolute;
-  height: 24px;
-  top: 8px;
+  top: 10px;
   left: 8px;
+  color: #1795f9;
+  font-size: 20px;
 }
 .input-w .icon.tail {
+  left:inherit;
   right: 8px;
-  left: inherit;
-  cursor: pointer;
 }
 .input-w .input {
   width: 100%;
@@ -372,14 +254,27 @@ body {
   right: 10px;
   z-index: 1;
 }
-.input-w .valid.tail {
+.input-w .valid.valid-tail.unpass {
   right: 40px;
+}
+.input-w .valid.valid-btn.unpass {
+  right: 120px;
 }
 .input-w .valid.require {
   right: 1px;
   font-size: 20px;
   display: block;
   margin-top: 3px;
+}
+
+.send-code{
+  position: absolute;
+  right: 1px;
+  top: 1px;
+  height: 38px;
+  line-height: 40px;
+  width: 110px;
+  text-align: center;
 }
 .radio-w {
   display: inline-block;
@@ -390,19 +285,19 @@ body {
   width: 18px;
   height: 18px;
   display: inline-block;
-  border: 1px solid #57baff;
+  border: 1px solid #1795f9;
   position: relative;
 }
 .radio-w .radio-box.girl {
-  border: 1px solid #fb84b0;
+  border: 1px solid #EE5857;
 }
 .radio-w .radio-box.girl .radio-o {
-  background-color: #fb84b0;
+  background-color: #EE5857;
 }
 .radio-w .radio-o {
   width: 14px;
   height: 14px;
-  background-color: #57baff;
+  background-color: #1795f9;
   position: absolute;
   display: block;
   opacity: 0;
@@ -429,9 +324,9 @@ body {
   position: relative;
   cursor: pointer;
 }
-.link:hover {
-  color: #666;
-}
+/* .link:hover { */
+  /* color: #666; */
+/* } */
 .link:active {
   color: #333;
 }
@@ -444,50 +339,82 @@ body {
   font-size: 12px;
   left: 0;
 }
-body {
-  position: relative;
-  left: 0%;
-  transition: left 0.3s ease;
-  -webkit-transition: left 0.3s ease;
-  -moz-transition: left 0.3s ease;
-  -o-transition: left 0.3s ease;
-  -ms-transition: left 0.3s ease;
+
+
+/* header */
+.header-wrapper{
 }
-body .cover {
-  position: fixed;
-  height: 100%;
-  top: 0;
-  left: 0;
-  width: 100%;
-  transition: background-color 0.3s ease;
-  -webkit-transition: background-color 0.3s ease;
-  -moz-transition: background-color 0.3s ease;
-  -o-transition: background-color 0.3s ease;
-  -ms-transition: background-color 0.3s ease;
-  z-index: 10;
-  display: none;
-  background-color: rgba(0, 0, 0, 0);
+.header {
+  height: 40px;
+  line-height:40px;
+  text-align:center;
+  font-size: 18px;
+  font-weight: bold;
 }
-body.offset {
-  left: -50%;
+.logo-img{
+  float:left;
 }
-body.offset .cover {
-  background-color: rgba(0, 0, 0, 0.7);
+.header .img {
+  height: 40px;
+  position: absolute;
+  left: 0px;
 }
-.navi {
-  position: fixed;
+.header .tail {
+  float:right;
+  margin: 0 5px;
+}
+.header .search-w {
+  padding: 5px 40px 5px 80px;
+}
+.header .search-w .input {
+  width: 50px;
+  background-color: #ffffff;
+  border: 1px solid #d9d9d9;
+  height: 30px;
+  float: left;
+}
+.header .search-w .input.search {
   width: 50%;
-  height: 100%;
-  top: 0;
-  z-index: 10;
-  right: -50%;
-  transition: right 0.3s ease;
-  -webkit-transition: right 0.3s ease;
-  -moz-transition: right 0.3s ease;
-  -o-transition: right 0.3s ease;
-  -ms-transition: right 0.3s ease;
-  border-left: 1px solid #fff;
 }
-.navi.offset {
-  right: 0;
+.header .search-w .input.select {
+  width: 30%;
+}
+.header .search-w .search-btn {
+  width: 20%;
+  height: 30px;
+  float: left;
+  padding-top: 2px;
+  text-align: center;
+  border: 1px solid #d9d9d9;
+}
+.header .search-w .search-btn img {
+  height: 30px;
+  position: relative;
+  top: -3px;
+}
+.header.boy {
+  background-color: #1795f9;
+}
+
+/* end header */
+
+.func-btn{
+  height: 24px;
+  width: 55px;
+  margin: 3px;
+  color: #fff;
+  position: relative;
+  padding-left: 24px;
+  text-align: center;
+  white-space: nowrap;
+}
+.func-btn .icon{
+  position: absolute;
+  left: 6px;
+  top: 4px;
+  font-size: 16px;
+}
+.func-btn span{
+  font-size:12px;
+  line-height:24px;
 }

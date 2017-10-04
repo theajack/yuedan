@@ -11,39 +11,31 @@
     <meta content="telephone=no" name="format-detection">
     <title>约单网--最真实的大学校园交友网站</title>
     <link rel="icon" href="assets/images/icon.ico" type="image/x-icon"/>
-    
     <link rel="stylesheet" type="text/css" href="assets/css/theajack.css"/>
     <link rel="stylesheet" type="text/css" href="assets/css/icon.css"/>
     <link rel="stylesheet" type="text/css" href="assets/css/common.css"/>
-    <link rel="stylesheet" type="text/css" href="assets/css/main.css"/>
     <link rel="stylesheet" type="text/css" href="assets/css/box.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/main.css"/>
     <link rel="stylesheet" type="text/css" href="assets/css/scrollbar.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/collect.css"/>
   <head>
   <body>
+    <div class="search-wrapper theme">
+      <div class="s-i-w search"><input type="text" class="input theme-text theme-border"/></div>
+      <div class="s-i-w select">
+        <input type="text" class="input theme-text theme-border" value="全部" readonly="true" onclick="openSearchSelect(this)"/>
+        <i class="icon icon-sort-down theme-text"></i>
+      </div>
+      
+      <i class="icon icon-search search-img search"></i>
+      <i class="icon icon-times search-img close" onclick="toggleSearch()"></i>
+    </div>
     <div class="header-wrapper" id="header">
       <div class="header theme">
-        我的校区
+        我的收藏
         <img class="img logo-img" src="assets/images/yuedan_s.png" alt="">
-        <i class="icon icon-search open-search"></i>
+        <i class="icon icon-search open-search" onclick="toggleSearch()"></i>
         <i class="icon icon-bars open-navi"></i>
-      </div>
-      <div class="type">
-        <div class="type-item theme theme-bb theme-br">
-          <i class="icon icon-home theme-text"></i>
-          <span class="theme-text">全部</span>
-        </div>
-        <div class="type-item theme-bb theme-br">
-          <i class="icon icon-check-board theme-text"></i>
-          <span class="theme-text">约单</span>
-        </div>
-        <div class="type-item theme-bb theme-br">
-          <i class="icon icon-chat-line theme-text"></i>
-          <span class="theme-text">帖子</span>
-        </div>
-        <div class="type-item theme-bb">
-          <i class="icon icon-dollar theme-text"></i>
-          <span class="theme-text">拍卖</span>
-        </div>
       </div>
     </div>
     <div id="wrapper">
@@ -55,7 +47,7 @@
         <div class="item-list" id="main">
             <div class="c-item boy">
               <span class="c-tip">约体育</span>
-              <span class="c-tip rect">约体育</span>
+              <span class="c-tip rect">约游泳</span>
               <img class="c-photo" src="assets/images/icon3.png" alt="" />
               <i class="c-set fc-boy icon icon-cog" onclick="openSet(this)"></i>
               <div class="c-title">Marry：约个人一起去游泳。。</div>
@@ -83,7 +75,7 @@
               <span class="c-tip">约体育</span>
               <span class="c-tip rect">约游泳</span>
               <img class="c-photo" src="assets/images/icon3.png" alt="" />
-              <i class="c-set fc-girl icon icon-cog" onclick="openMulti()"></i>
+              <i class="c-set fc-girl icon icon-cog" onclick="openSet(this)"></i>
               <div class="c-title">Marry：约个人一起去游泳。。</div>
               <div class="c-text">赴约时间：2017-07-18 下午 3:00</div>
               <div class="c-text">发布时间：2017-07-13 下午 3:00</div>
@@ -92,11 +84,11 @@
               <div class="tool-box">
                 <i class="tool-left fc-girl icon icon-venus"></i>
                 <i class="tool-left fc-girl icon icon-check-board"></i>
-                <div class="tool-right func-btn" onclick="openDate('date')">
+                <div class="tool-right func-btn">
                   <i class="icon icon-check-board"></i>
                   <span>12</span>
                 </div>
-                <div class="tool-right func-btn" onclick="openDate('datetime')">
+                <div class="tool-right func-btn">
                   <i class="icon icon-heart" ></i>
                   <span>12</span>
                 </div>
@@ -106,7 +98,7 @@
               <span class="c-tip">约体育</span>
               <span class="c-tip rect">约游泳</span>
               <img class="c-photo" src="assets/images/icon3.png" alt="" />
-              <i class="c-set fc-girl icon icon-cog" onclick="openCascade(this)"></i>
+              <i class="c-set fc-girl icon icon-cog" onclick="openSet(this)"></i>
               <div class="c-title">Marry：约个人一起去游泳。。</div>
               <div class="c-text">赴约时间：2017-07-18 下午 3:00</div>
               <div class="c-text">发布时间：2017-07-13 下午 3:00</div>
@@ -136,6 +128,7 @@
         </div>
       </div>
     </div>
+    
     <script type="text/javascript" src="assets/js/jetter2.0.js"></script>
     <script type="text/javascript" src="assets/js/common.js"></script>
     <script type="text/javascript" src="assets/js/box.js"></script>
@@ -143,36 +136,17 @@
     <script type="text/javascript">
       J.ready(function(){
         setTheme();
-        Box.navi.init("main");
-        Box.search.init();
-        Box.config.fixBody=false;//因为与 iscroll 有冲突
-        J.cls("type-item").clk("changeType(this)");
+        Box.navi.init("collect");
         initctip();
       });
-      
-      var interval = null;// 定时器  
-      var topValue;
-      function onScroll(obj){
-        if(interval == null){
-          interval = setInterval(function(){
-            if(obj.scrollTop == topValue){
-              setLocation(obj);
-              clearInterval(interval);  
-              interval = null;  
-            }
-          }, 100);  
-        }
-        topValue = obj.scrollTop;  
-      }
-      function setLocation(obj){
-        var top=obj.scroll();
-        var a=top%50;
-        if(a>=25){
-          top+=(50-a);
-        }else{
-          top-=a;
-        }
-        obj.scrollTo(top,null,80);
+      function openSearchSelect(obj){
+        Box.select.open({
+          items:["全部","约单","帖子","拍卖"],
+          onselect:function(){
+            obj.val(this.txt());
+            Box.select.close();
+          }
+        });
       }
       var openEle=null;
       function openSet(obj){
@@ -191,42 +165,6 @@
         });
         openEle=obj;
         openEle.addClass("icon-spin");
-      }
-      function openMulti(){
-        Box.multi.open({
-          items:["苹果","梨子","香蕉","哈密瓜","猕猴桃"],
-          data:["a","b","c","d","e"],
-          onsubmit:function(items,datas){
-            J.show(J.toString(items));
-          },
-          oncancel:function(){
-            J.show("取消选择");
-          },
-          maxNum:3
-        });
-      }
-      function openCascade(){
-        Box.cascade.open({
-          items:[
-            "1","2"
-          ],
-          subItems:[
-            [11,12,13,14],
-            [21,22,23,24]
-          ],
-          type:"all",
-          onsubmit:function(data){
-            J.show(data)
-          }
-        });
-      }
-      function openDate(type){
-        Box.date.open({
-          onsubmit:function(data){
-            J.show(data)
-          },
-          type:type
-        });
       }
     </script>
   </body>

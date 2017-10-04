@@ -11,111 +11,90 @@
     <meta content="telephone=no" name="format-detection">
     <title>约单网--注册账户</title>
     <link rel="icon" href="assets/images/icon.ico" type="image/x-icon"/>
-    <link rel="stylesheet" type="text/css" href="assets/css/theajack.less"/>
-    <link rel="stylesheet" type="text/less" href="assets/css/common.less"/>
-    <link rel="stylesheet" type="text/less" href="assets/css/index.less"/>
-    <link rel="stylesheet" type="text/less" href="assets/css/mobi.css"/>
+    <!-- <link rel="stylesheet" type="text/css" href="assets/css/theajack.less"/> -->
+    <!-- <link rel="stylesheet" type="text/less" href="assets/css/common.less"/> -->
+    <!-- <link rel="stylesheet" type="text/less" href="assets/css/index.less"/> -->
+    <link rel="stylesheet" type="text/css" href="assets/css/theajack.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/index.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/mobi.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/icon.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/box.css"/>
     <head>
 <body>
-<div id="centerWrapper">
-    <img src="assets/images/yuedan_l.png" alt="" class="big-logo">
-    <div class="info-text regist">完善个人真实信息</div>
-    <div class="info-text small jump">约单绝不会将您的学号密码用作他途</div>
-    <div class="login-func-w regist jump">
-        <span class="link" onclick="J.jump('main.html')">跳过此步,稍后完善</span>
-    </div>
-    <div jet-form="finish">
-        <div class="input-w">
-            <img src="assets/images/icon/img.png" alt="" class="icon">
-            <input type="text" class="input big has-icon" placeholder="头像">
-            <span class="valid">输入有误</span>
+<div id="centerWrapper" class="finish">
+    <div j-form="finish">
+        <div class="add-photo" j-name="photo" j-get="css:background-image">
+          <i class="icon icon-plus"></i>
+          <span>上传头像</span>
+        </div/>
+        <div class="login-func-w regist jump">
+            <span class="link" onclick="J.jump('main.html')">跳过此步,稍后完善</span>
         </div>
         <div class="input-w">
-            <img src="assets/images/icon/login_user_b.png" alt="" class="icon">
+            <i class="icon icon-user"></i>
             <input type="text" class="input big has-icon" placeholder="昵称（默认为学号）">
-            <span class="valid">输入有误</span>
         </div>
         <div class="input-w">
-            <img src="assets/images/icon/name.png" alt="" class="icon">
-            <input type="text" class="input big has-icon" placeholder="真实姓名（默认为学号）">
-            <span class="valid">输入有误</span>
-        </div>
-        <div class="input-w">
-            <img src="assets/images/icon/boy.png" alt="" class="icon">
-            <input type="text" class="input big has-icon" placeholder="性别">
-            <span class="valid">输入有误</span>
-        </div>
-        <div class="input-w">
-            <img src="assets/images/icon/login_pw_b.png" alt="" class="icon">
-            <img src="assets/images/icon/pw_show_b.png" alt="" class="icon tail" onclick="toggleViewPw(this)">
+            <i class="icon icon-lock"></i>
+            <i class="icon tail icon-eye-open" onclick="toggleViewPw(this)"></i>
             <input type="password" class="input big has-icon" placeholder="登录密码（默认为学号密码）">
-            <span class="valid tail">输入有误</span>
         </div>
         <div class="input-w">
-            <img src="assets/images/icon/phone.png" alt="" class="icon">
-            <input type="text" jet-valid="phone null" class="input big has-icon" placeholder="手机号">
-            <span class="valid">输入有误</span>
+            <i class="icon icon-pencil"></i>
+            <input type="text" class="input big has-icon" placeholder="真实姓名（默认为学号）">
         </div>
         <div class="input-w">
-            <img src="assets/images/icon/email.png" alt="" class="icon">
-            <input type="text" jet-valid="email null" class="input big has-icon" placeholder="邮箱">
-            <span class="valid">输入有误</span>
+            <i class="icon icon-venus"></i>
+            <input type="text" class="input big has-icon" placeholder="性别">
         </div>
         <div class="input-w">
-            <img src="assets/images/icon/dorm.png" alt="" class="icon">
-            <input type="text" class="input big has-icon" placeholder="宿舍楼">
-            <span class="valid">输入有误</span>
+            <i class="icon icon-calendar"></i>
+            <input type="text" class="input big has-icon" j-name="birth" j-mobi="date" placeholder="生日">
         </div>
         <div class="input-w">
-            <img src="assets/images/icon/school.png" alt="" class="icon">
-            <input type="text" class="input big has-icon" placeholder="学校名称">
-            <span class="valid">输入有误</span>
-            <span class="valid require">*</span>
+            <i class="icon icon-envelope-alt"></i>
+            <input type="text" j-valid="email null" class="input big has-icon" placeholder="邮箱">
         </div>
         <div class="input-w">
-            <img src="assets/images/icon/area.png" alt="" class="icon">
-            <input type="text" class="input big has-icon" placeholder="所在校区">
-            <span class="valid">输入有误</span>
+            <i class="icon icon-home"></i>
+            <input type="text" class="input big has-icon" placeholder="所在校区" j-name="area"/>
         </div>
         <div class="input-w">
-            <img src="assets/images/icon/college.png" alt="" class="icon">
-            <input type="text" class="input big has-icon" placeholder="学院">
-            <span class="valid">输入有误</span>
+            <i class="icon icon-archive"></i>
+            <input type="text" class="input big has-icon" placeholder="学院"/>
         </div>
         <div class="input-w">
-            <img src="assets/images/icon/major.png" alt="" class="icon">
+            <i class="icon icon-wrench"></i>
             <input type="text" class="input big has-icon" placeholder="专业">
-            <span class="valid">输入有误</span>
         </div>
         <div class="input-w">
-            <img src="assets/images/icon/edu.png" alt="" class="icon">
-            <input type="text" class="input big has-icon" placeholder="学历">
-            <span class="valid">输入有误</span>
+            <i class="icon icon-building"></i>
+            <input type="text" class="input big has-icon" placeholder="宿舍楼"/>
         </div>
         <div class="input-w">
-            <img src="assets/images/icon/date.png" alt="" class="icon">
-            <input type="text" class="input big has-icon" placeholder="入学年份">
-            <span class="valid">输入有误</span>
+            <i class="icon icon-bookmark"></i>
+            <input type="text" class="input big has-icon" j-name="education" placeholder="学历">
         </div>
         <div class="input-w">
-            <img src="assets/images/icon/role.png" alt="" class="icon">
+            <i class="icon icon-calendar"></i>
+            <input type="text" class="input big has-icon" j-name="schoolYear" placeholder="入学年份">
+        </div>
+        <div class="input-w">
+            <i class="icon icon-list-alt"></i>
             <input type="text" class="input big has-icon" placeholder="身份">
-            <span class="valid">输入有误</span>
         </div>
         <div class="input-w">
-            <img src="assets/images/icon/mine_b.png" alt="" class="icon">
-            <input type="text" class="input big has-icon" placeholder="兴趣爱好">
-            <span class="valid">输入有误</span>
+            <i class="icon icon-heart"></i>
+            <input type="text" class="input big has-icon" placeholder="兴趣爱好" onclick="bindMulti(this)">
         </div>
         <div class="input-w">
-            <img src="assets/images/icon/single.png" alt="" class="icon">
+            <i class="icon icon-star-half-full"></i>
             <input type="text" class="input big has-icon" placeholder="是否单身">
-            <span class="valid">输入有误</span>
         </div>
         <div class="input-w">
-            <img src="assets/images/icon/city.png" alt="" class="icon">
-            <input type="text" class="input big has-icon" placeholder="祖籍" jet-name="city">
-            <span class="valid">输入有误</span>
+            <i class="icon icon-edit-sign"></i>
+            <input type="text" class="input big has-icon" placeholder="祖籍" j-name="city">
         </div>
     </div>
     <div class="login-func-w regist">
@@ -124,20 +103,42 @@
     </div>
 </div>
 <div class="copyright">© 2017 Yuedanwang All Right Reserved</div>
-<script type="text/javascript" src="assets/js/less.min.js"></script>
 <script type="text/javascript" src="assets/js/jetter2.0.js"></script>
 <script type="text/javascript" src="assets/js/common.js"></script>
-<script type="text/javascript" src="assets/js/bg.js"></script>
 <script type="text/javascript" src="assets/js/mobi.js"></script>
+<script type="text/javascript" src="assets/js/bg.js"></script>
+<script type="text/javascript" src="assets/js/box.js"></script>
 <script type="text/javascript">
     J.ready(function () {
-        initValid();
-        bindDoubleSelect("city");
     })
-
+  
+  function bindMulti(obj){
+    Box.multi.open({
+      items:["K歌","电影","追剧","明星","体育","健身","学术","交友","美食","旅游","上网","游戏","摄影","艺术","其他","电影","追剧","明星","体育","健身","学术","交友","美食","旅游","上网","游戏","摄影","艺术","其他"],
+      bind:obj
+    });
+  }
 </script>
 
-<ul id="city" class="hide">
+<ul id="schoolYear" j-mobi="single" class="hide">
+  <li>2017</li>
+  <li>2016</li>
+  <li>2015</li>
+  <li>2014</li>
+  <li>2013</li>
+  <li>2012</li>
+  <li>2011</li>
+  <li>2010</li>
+  <li>2009</li>
+  <li>2008</li>
+</ul>
+<ul id="area" j-mobi="single" class="hide">
+  <li>四平路校区</li>
+  <li>嘉定校区</li>
+  <li>沪西校区</li>
+  <li>沪北校区</li>
+</ul>
+<ul id="city" j-mobi="double" class="hide">
     <li>
         <div>北京</div>
         <ul>

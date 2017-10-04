@@ -1,5 +1,5 @@
-var b_color = "rgba(87,186,255,";
-var g_color = "rgba(251,132,176,";
+var b_color = "rgba(23,149,249,";
+var g_color = "rgba(238,88,87,";
 var canvas = J.ct("canvas#bgCanvas");
 var _w=J.width();
 var _h=J.height();

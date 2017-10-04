@@ -11,25 +11,25 @@
     <meta content="telephone=no" name="format-detection">
     <title>约单网--最真实的大学校园交友网站</title>
     <link rel="icon" href="assets/images/icon.ico" type="image/x-icon"/>
-    <link rel="stylesheet" type="text/css" href="assets/css/theajack.less"/>
-    <link rel="stylesheet" type="text/less" href="assets/css/common.less"/>
-    <link rel="stylesheet" type="text/less" href="assets/css/index.less"/>
+    
+    <link rel="stylesheet" type="text/css" href="assets/css/theajack.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/index.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/icon.css"/>
   <head>
 <body>
   <div id="centerWrapper">
     <img src="assets/images/yuedan_l.png" alt="" class="big-logo">
     <div class="info-text">最真实的大学校园交友网站</div>
-    <div jet-form="login">
+    <div j-form="login">
       <div class="input-w">
-        <img src="assets/images/icon/login_user_b.png" alt="" class="icon">
-        <input type="text" class="input big has-icon" placeholder="使用学号或是手机号登录">
-        <span class="valid">输入有误</span>
+        <i class="icon icon-user"></i>
+        <input type="text" class="input big has-icon" j-valid="number" placeholder="手机号登录"/>
       </div>
       <div class="input-w">
-        <img src="assets/images/icon/login_pw_b.png" alt="" class="icon">
-        <img src="assets/images/icon/pw_show_b.png" alt="" class="icon tail" onclick="toggleViewPw(this)">
-        <input type="password" class="input big has-icon">
-        <span class="valid tail">输入有误</span>
+        <i class="icon icon-lock"></i>
+        <i class="icon tail icon-eye-open" onclick="toggleViewPw(this)"></i>
+        <input type="password" j-valid="notnull" class="input big has-icon"/>
       </div>
     </div>
     <div class="login-func-w">
@@ -46,19 +46,18 @@
     </div>
     <div class="login-func-w">
       <div class="btn">登录</div>
-      <span class="link">忘记密码</span>
-      <span class="link">游客访问</span>
+      <span class="link" onclick="J.jump('pwd.html')">忘记密码</span>
+      <span class="link" onclick="J.jump('main.html')">游客访问</span>
       <span class="link" onclick="J.jump('regist.html')">前往注册</span>
     </div>
   </div>
   <div class="copyright">© 2017 Yuedanwang All Right Reserved</div>
-  <script type="text/javascript" src="assets/js/less.min.js"></script>
   <script type="text/javascript" src="assets/js/jetter2.0.js"></script>
   <script type="text/javascript" src="assets/js/common.js"></script>
   <script type="text/javascript" src="assets/js/bg.js"></script>
   <script type="text/javascript">
     J.ready(function(){
-        checkMiddle(50);
+      checkMiddle(50);
     });
 
   </script>

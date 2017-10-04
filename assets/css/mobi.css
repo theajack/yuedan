@@ -44,8 +44,25 @@
   background-color:transparent!important;
   text-align:center!important;
   border-color:transparent!important;
+  color:#fff!important;
+  font-family:Microsoft Yahei;
 }
 .tmp{
   position:absolute;
   top:-100px;
+}
+.dwwr{
+  background-color: #007cf0;
+  padding:12px 10px!important;
+  /* width:100%; */
+  /* position:fixed; */
+  /* bottom:0; */
+}
+.dwo{
+  opacity: .6;
+  filter: Alpha(Opacity=60); 
+}
+.dw-sel .dw-i{
+  font-size:32px!important;
+  font-weight:bold!important;
 }
