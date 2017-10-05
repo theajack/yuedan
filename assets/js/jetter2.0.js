@@ -15,6 +15,9 @@ float
 因为兼容 formdata.get方法需要trycatch
 J.show() 增加了center 17-9-30
 J.reload()
+J.checkValue
+J.validInput 增加添加验证规则参数
+现在会正确验证 j-get属性
 */
 (function(){
   //(function(){var meta=document.createElement("meta");
@@ -364,9 +367,9 @@ J.reload()
     },
     validate: function(a, b, c) {
       if (c != undefined) {
-        _validateForm(_checkJetForm(a), b, c)
+        return _validateForm(_checkJetForm(a), b, c)
       } else {
-        _validateForm(_checkJetForm(a), b)
+        return _validateForm(_checkJetForm(a), b)
       }
     },
     validText: function(a, b) {
@@ -421,6 +424,7 @@ J.reload()
     toFunc:_checkFunction,
     noteStyle: _setNoteStyle,
     validInput:_validInput,
+    checkValue:_checkValue,//type value
     addValidValue:_addValidValue,
     onOnePass: function(c) {
       _onOnePass=_checkFunction(c);
@@ -2835,6 +2839,17 @@ J.reload()
     }
     return value;
   };
+  function _setGetValue(e,val){
+    var value="";
+    var type=e.attr("j-get");
+    var name="";
+    if(type!=undefined&&type.has(":")){
+      name=type.split(":")[1];
+      type=type.split(":")[0];
+    }
+    _checkSetObjValFun(e,val,type,name);
+    return value;
+  };
   function _getContentForGet(b) {
     if (b.hasClass("j-unpass")) {
       return b.attr("j-value")
@@ -2910,21 +2925,22 @@ J.reload()
     return false;
   };
   
-  function _validInput(b, a) {
-    var v = b.attr("j-valid");
+  function _validInput(b,v,a) {
+    var v = J.checkArg(v,b.attr("j-valid"));
     var c = "";
     if(v!=null){
+      var cont=_getGetValue(b);
       if (v.indexOf("lengthOfAny") != -1) {
         var e = v.substring(12, v.length - 1).split(",");
         var f = "lengthOfAny";
-        var d = b.content();
+        var d = cont;
         if (d.length >= parseInt(e[0]) && d.length <= parseInt(e[1])) {
           c = "true"
         } else {
           c = _getValidText(f, e)
         }
       } else {
-        c = _checkValue(v, b.content())
+        c = _checkValue(v, cont)
       }
       if (c == "true") {
         if (J.useDefaultStyle) {
@@ -2934,7 +2950,8 @@ J.reload()
         if (_onOnePass != undefined) _onOnePass(b, c)
       } else {
         if (J.useDefaultStyle) {
-          b.attr("j-value", b.content()).content(c).addClass("j-unpass");
+          b.attr("j-value", cont).addClass("j-unpass");
+          _setGetValue(b,c);
           if (b.attr("type") == "password") {
             b.attr("j-ispw", "true").attr("type", "text")
           }
@@ -3001,6 +3018,7 @@ J.reload()
         _checkFunction(f)(g.get(),g);
       }
     }
+    return d;
   };
 
   function _getElemsStrs(d, b) {

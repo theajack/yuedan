@@ -330,25 +330,35 @@ function toggleViewPw(obj) {
 function initValid() {
   J.attr("j-valid").exist(function(inputs){
     inputs.each(function(input){
-      input.clk(function(){
-        stopb(event);
-        this.removeClass("unpass").next().removeClass("unpass");
-      });
-      var prev=input.prev();
-      if(prev.hasClass("tail")){
-        input.after(J.ct("span.valid.valid-tail"));
-      }else if(prev.hasClass("send-code")){
-        input.after(J.ct("span.valid.valid-btn"));
-      }else{
-        input.after(J.ct("span.valid"));
-      }
+      initOneValid(input);
     });
     J.banDefault();
     J.banValidShow();
     J.onOneFail(function(input,err){
       input.addClass("unpass").next().addClass("unpass").txt(err);
     });
+    J.onOnePass(function(input){
+      input.removeClass("unpass").next().removeClass("unpass");
+    });
   });
+}
+function initOneValid(input){
+  input.clk(function(){
+    stopb(event);
+    this.removeClass("unpass").next().removeClass("unpass");
+  });
+  var prev=input.prev();
+  if(prev.hasClass("tail")){
+    input.after(J.ct("span.valid.valid-tail").clk(validClick));
+  }else if(prev.hasClass("send-code")){
+    input.after(J.ct("span.valid.valid-btn").clk(validClick));
+  }else{
+    input.after(J.ct("span.valid").clk(validClick));
+  }
+}
+function validClick(){
+  this.prev().click();
+  this.prev().focus();
 }
 // #1795f9 #57baff
 // #EE5857 #EE5857
@@ -385,9 +395,6 @@ function setTheme(t_type) {
     // });
     // resetThemeImg(obj.child(0));
 // }
-function changeType(obj){
-    active(obj,"theme");;
-}
 function active(obj,name,call){
   var active=obj.parent().findClass(name);
   active.removeClass(name);

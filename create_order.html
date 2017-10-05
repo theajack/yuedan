@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta content="telephone=no" name="format-detection">
+    <title>约单网--创建约单</title>
+    <link rel="icon" href="assets/images/icon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/theajack.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/icon.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/box.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/create.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/editor.css"/>
+  <head>
+  <body>
+    <div class="header-wrapper" id="header">
+      <div class="header theme">
+        创建约单
+        <!-- <img class="img logo-img" src="assets/images/yuedan_s.png" alt=""> -->
+        
+        <i class="icon icon icon-arrow-left back" onclick="J.back()"></i>
+        <i class="icon icon-bars open-navi"></i>
+      </div>
+    </div>
+    <div id="main" j-form="order">
+      <div class="input-w">
+        <span class="create-title theme-text">约单标题</span>
+        <input class="input" j-valid="notnull" type="text" j-name="title" j-valid="notnull"/>
+      </div>
+      <div class="input-w">
+        <span class="create-title theme-text">约单类型</span>
+        <input class="input" j-valid="notnull" type="text" j-name="type" j-valid="notnull" box-bind="single:orderType"/>
+      </div>
+      <div class="input-w">
+        <span class="create-title theme-text">约单时间</span>
+        <input class="input" j-valid="notnull" type="text" j-name="datetime" j-valid="notnull" box-bind="datetime"/>
+      </div>
+      <div class="input-w">
+        <span class="create-title theme-text">约单地点</span>
+        <input class="input" j-valid="notnull" type="text" j-name="place" j-valid="notnull"/>
+      </div>
+      <div class="input-w">
+        <span class="create-title theme-text">付费方式</span>
+        <input class="input" j-valid="notnull" type="text" j-name="pay" j-valid="notnull" box-bind="single:pay"/>
+      </div>
+      <div class="input-w">
+        <span class="create-title theme-text">受邀人数</span>
+        <input class="input" j-valid="notnull" type="number" j-name="number" j-valid="number"/>
+      </div>
+      <div class="input-w">
+        <span class="create-title theme-text">受邀性别</span>
+        <input class="input" j-valid="notnull" type="text" j-name="sex" j-valid="notnull" box-bind="single:inviteSex"/>
+      </div>
+      
+      
+      <div class="editor theme-text" e-title="约单内容" e-name="content" e-valid="notnull">
+        <!-- <div class="editor-title"> -->
+          <!-- <span>aaa</span> -->
+          <!-- <i class="icon icon-picture"></i> -->
+          <!-- <input type="file" accept="image/*" class="editor-file" onchange="uploadHeadSrc()"/> -->
+          <!-- <i class="icon icon-link"></i> -->
+          <!-- <div class="link-box"> -->
+            <!-- <div class="input-w"> -->
+              <!-- <span class="create-title theme-text">链接名称</span> -->
+              <!-- <input class="input" l-name="name" type="text" placeholder="默认为链接地址"/> -->
+            <!-- </div> -->
+            <!-- <div class="input-w"> -->
+              <!-- <span class="create-title theme-text">链接地址</span> -->
+              <!-- <input class="input" type="text" l-name="url" value="http://"/> -->
+              <!-- <span class="valid"></span> -->
+            <!-- </div> -->
+            <!-- <div class="create-btnw"> -->
+              <!-- <div class="create-btn btn theme" onclick="Editor.insertLink(this)">插入链接</div> -->
+            <!-- </div> -->
+          <!-- </div> -->
+          <!-- <i class="icon icon-smile"></i> -->
+          <!-- <div class="face-box"> -->
+            <!-- <img class="face-item" src="assets/images/rabbit/rabbit (1).gif" rt="1" onclick="addFace(this)"><img class="face-item" src="assets/images/rabbit/rabbit (2).gif" rt="2" onclick="addFace(this)"><img class="face-item" src="assets/images/rabbit/rabbit (3).gif" rt="3" onclick="addFace(this)"><img class="face-item" src="assets/images/rabbit/rabbit (4).gif" rt="4" onclick="addFace(this)"><img class="face-item" src="assets/images/rabbit/rabbit (5).gif" rt="5" onclick="addFace(this)"><img class="face-item" src="assets/images/rabbit/rabbit (6).gif" rt="6" onclick="addFace(this)"><img class="face-item" src="assets/images/rabbit/rabbit (7).gif" rt="7" onclick="addFace(this)"><img class="face-item" src="assets/images/rabbit/rabbit (8).gif" rt="8" onclick="addFace(this)"><img class="face-item" src="assets/images/rabbit/rabbit (9).gif" rt="9" onclick="addFace(this)"><img class="face-item" src="assets/images/rabbit/rabbit (10).gif" rt="10" onclick="addFace(this)"><img class="face-item" src="assets/images/rabbit/rabbit (11).gif" rt="11" onclick="addFace(this)"><img class="face-item" src="assets/images/rabbit/rabbit (12).gif" rt="12" onclick="addFace(this)"><img class="face-item" src="assets/images/rabbit/rabbit (13).gif" rt="13" onclick="addFace(this)"><img class="face-item" src="assets/images/rabbit/rabbit (14).gif" rt="14" onclick="addFace(this)"><img class="face-item" src="assets/images/rabbit/rabbit (15).gif" rt="15" onclick="addFace(this)"><img class="face-item" src="assets/images/rabbit/rabbit (16).gif" rt="16" onclick="addFace(this)"><img class="face-item" src="assets/images/rabbit/rabbit (17).gif" rt="17" onclick="addFace(this)"><img class="face-item" src="assets/images/rabbit/rabbit (18).gif" rt="18" onclick="addFace(this)"><img class="face-item" src="assets/images/rabbit/rabbit (19).gif" rt="19" onclick="addFace(this)"><img class="face-item" src="assets/images/rabbit/rabbit (20).gif" rt="20" onclick="addFace(this)"><img class="face-item" src="assets/images/rabbit/rabbit (21).gif" rt="21" onclick="addFace(this)"><img class="face-item" src="assets/images/rabbit/rabbit (22).gif" rt="22" onclick="addFace(this)"><img class="face-item" src="assets/images/rabbit/rabbit (23).gif" rt="23" onclick="addFace(this)"><img class="face-item" src="assets/images/rabbit/rabbit (24).gif" rt="24" onclick="addFace(this)"><img class="face-item" src="assets/images/rabbit/rabbit (25).gif" rt="25" onclick="addFace(this)"><img class="face-item" src="assets/images/rabbit/rabbit (26).gif" rt="26" onclick="addFace(this)"><img class="face-item" src="assets/images/rabbit/rabbit (27).gif" rt="27" onclick="addFace(this)"><img class="face-item" src="assets/images/rabbit/rabbit (28).gif" rt="28" onclick="addFace(this)"><img class="face-item" src="assets/images/rabbit/rabbit (29).gif" rt="29" onclick="addFace(this)"><img class="face-item" src="assets/images/rabbit/rabbit (30).gif" rt="30" onclick="addFace(this)"><img class="face-item" src="assets/images/rabbit/rabbit (31).gif" rt="31" onclick="addFace(this)"><img class="face-item" src="assets/images/rabbit/rabbit (32).gif" rt="32" onclick="addFace(this)"><img class="face-item" src="assets/images/rabbit/rabbit (33).gif" rt="33" onclick="addFace(this)"><img class="face-item" src="assets/images/rabbit/rabbit (34).gif" rt="34" onclick="addFace(this)"><img class="face-item" src="assets/images/rabbit/rabbit (35).gif" rt="35" onclick="addFace(this)"><img class="face-item" src="assets/images/rabbit/rabbit (36).gif" rt="36" onclick="addFace(this)"><img class="face-item" src="assets/images/rabbit/rabbit (37).gif" rt="37" onclick="addFace(this)"><img class="face-item" src="assets/images/rabbit/rabbit (38).gif" rt="38" onclick="addFace(this)"><img class="face-item" src="assets/images/rabbit/rabbit (39).gif" rt="39" onclick="addFace(this)"><img class="face-item" src="assets/images/rabbit/rabbit (40).gif" rt="40" onclick="addFace(this)"> -->
+          <!-- </div> -->
+        <!-- </div> -->
+        <!-- <div class="editor-box input" contenteditable="true" j-name="content" j-valid="notnull" jet-get="html"></div> -->
+      </div>
+      <div class="create-btnw">
+        <div class="create-btn btn theme">提交</div>
+      </div>
+      
+    </div>
+    
+    <script type="text/javascript" src="assets/js/jetter2.0.js"></script>
+    <script type="text/javascript" src="assets/js/common.js"></script>
+    <script type="text/javascript" src="assets/js/box.js"></script>
+    <script type="text/javascript" src="assets/js/editor.js"></script>
+    <script type="text/javascript">
+      J.ready(function(){
+        setTheme();
+        Box.navi.init();
+      });
+    </script>
+  </body>
+</html>

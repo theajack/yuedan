@@ -40,10 +40,16 @@
           <i class="icon icon-chat-line theme-text"></i>
           <span class="theme-text">帖子</span>
         </div>
-        <div class="type-item theme-bb">
+        <div class="type-item theme-bb theme-br">
           <i class="icon icon-dollar theme-text"></i>
           <span class="theme-text">拍卖</span>
         </div>
+        <div class="type-item create theme-bb">
+          <i class="icon icon-plus theme-text"></i>
+        </div>
+        <!-- <div id="createBtn" class="theme-border"> -->
+          <!-- <i class="icon icon-plus theme-text"></i> -->
+        <!-- </div> -->
       </div>
     </div>
     <div id="wrapper">
@@ -227,6 +233,19 @@
           },
           type:type
         });
+      }
+      function changeType(obj){
+        if(obj.hasClass("create")){
+          Box.select.open({
+            items:["创建一个约单","发布一个帖子","发布一个拍卖"],
+            onselect:["goCreate('order')","goCreate('post')","goCreate('auction')"]
+          });
+        }else{
+          active(obj,"theme");
+        }
+      }
+      function goCreate(type){
+        J.jump('create_'+type+'.html');
       }
     </script>
   </body>

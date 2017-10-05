@@ -219,7 +219,14 @@
   top: 5px;
   position: absolute;
   right: 5px;
-}.navi {
+}
+.icon.back{
+  font-size: 28px;
+  top: 5px;
+  position: absolute;
+  left: 5px;
+}
+.navi {
   position: fixed;
   height: 100%;
   top: 0;

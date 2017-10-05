@@ -1,0 +1,32 @@
+.big-logo{
+  width: 60%;
+  display: block;
+  margin: 0 auto!important;
+}
+.info-text {
+  color: #808080;
+  font-size: 16px;
+  text-align: center;
+  margin: 15px;
+}
+.img404{
+  width: 50%;
+  margin: 20px 0;
+}
+.text404{
+  color: #888;
+}
+.link-wrapper{
+  margin:10px 0;
+}
+.link404{
+  margin: 0 10px;
+  text-decoration: underline;
+}
+.copyright{
+  position:relative;
+}
+#centerWrapper{
+  max-width:600px;
+  text-align:center;
+}

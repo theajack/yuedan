@@ -1,0 +1,119 @@
+.editor{
+  background-color: #fff;
+  border-radius: 10px;
+  min-height: 60px;
+  padding:5px;
+  overflow:hidden;
+  position: relative;
+}
+.editor .valid {
+  font-size: 14px;
+  color: #f44;
+  position: absolute;
+  right: -30px;
+  opacity: 0;
+  top: 35px;
+  z-index: -1;
+  transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+}    
+.editor .valid.unpass {
+  opacity: 1;
+  right: 10px;
+  z-index: 1;
+}
+.link-box .valid{
+  top: 7px;
+}
+.editor-title {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+.editor-title .icon{
+  font-size: 18px;
+  float: right;
+  margin: 3px 5px;
+}
+.editor-title .icon:last-child{
+  margin-right: 0;
+}
+.face-box {
+  display:none;
+  width: 281px;
+  position: absolute;
+  top: 30px;
+  right: 5px;
+  border: 1px solid #aaa;
+  border-right: 0;
+  border-bottom: 0;
+  box-shadow: 0 0 10px 2px #aaa;
+  z-index:2;
+}
+.link-box {
+  display:none;
+  width: 281px;
+  position: absolute;
+  top: 30px;
+  right: 5px;
+  border: 1px solid #aaa;
+  box-shadow: 0 0 10px 2px #aaa;
+  background-color:#fff;
+}
+.face-item {
+  width: 35px;
+  height: 35px;
+  margin: 0;
+  padding: 0;
+  float: left;
+  border: 1px solid #aaa;
+  border-top: 0;
+  border-left: 0;
+  cursor: pointer;
+}
+.editor-box{
+  font-size: 16px;
+  line-height: 16px;
+  color:#444;
+  border: 1px solid #aaa;
+  min-height:175px;
+  padding:5px;
+  width:100%;
+  height:auto;
+  background-color:#fff;
+  transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+}
+.editor-box.unpass {
+  border: 1px solid #e44;
+  background-color: rgba(255, 245, 245, 0.2);
+}
+.editor-box:active{
+  background-color:#fff;
+  border: 1px solid #aaa;
+}
+.create-btnw{
+  padding:0 5px;
+  padding-bottom:10px;
+}
+.create-btn {
+  width:100%;
+}
+.editor-file{
+  display:none;
+}
+.editor-link{
+  color: #aaa;
+  text-decoration: underline;
+  margin: 0 2px;
+  cursor: pointer;
+}
+.editor-img{
+  width: 100%;
+  display: block;
+}

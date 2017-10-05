@@ -11,10 +11,10 @@ body {
 .type {
   height: 40px;
   text-align: center;
-  color: #808080;
+  position:relative;
 }
 .type .type-item {
-  width: 25%;
+  width: 22%;
   float: left;
   /* border-right: 1px solid #d9d9d9; */
   height: 40px;
@@ -32,6 +32,13 @@ body {
 }
 .type-item .icon{
   font-size:20px
+}
+.type-item.create{
+  width:12%;
+}
+.type-item.create .icon{
+  font-size: 25px;
+  line-height: 40px;
 }
 .c-wrapper{
   padding:85px 5px 0 5px;

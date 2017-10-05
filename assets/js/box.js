@@ -28,7 +28,7 @@
             bind:obj
           });
         });
-      }else if(type=="date"){
+      }else if(type.substring(0,4)=="date"){
         obj.clk(function(){
           Box.date.open({
             type:type,
@@ -156,6 +156,9 @@
         this.onsubmit(this.checkList,this.dataList);
         if(this.bind!=null){
           this.bind.content(this.checkList.join(";"));
+          if(this.bind.hasAttr("j-valid")){
+            J.validInput(this.bind);
+          }
         }
       },check:function(obj){
         if(obj.hasClass("mutli-checked")){
@@ -283,6 +286,9 @@
         this.onsubmit(data);
         if(this.bind!=null){
           this.bind.content(data);
+          if(this.bind.hasAttr("j-valid")){
+            J.validInput(this.bind);
+          }
         }
       },_onscroll:function(obj){
         if(obj._timer == null){
@@ -408,6 +414,9 @@
           }else{
             this.bind.content(data);
           }
+          if(this.bind.hasAttr("j-valid")){
+            J.validInput(this.bind);
+          }
         }
         this.close();
       },_onscroll:function(obj){
@@ -526,9 +535,9 @@
       init:function(cur){
         J.cls("open-navi").clk(this.open);
         this.index=this.pages.indexOf(cur);
-        if(this.index!=-1){
+        //if(this.index!=-1){
           _addNavi(this.index);
-        }
+        //}
       },open:function(){
         J.id("header").addClass("offset");
         J.id("main").addClass("offset");

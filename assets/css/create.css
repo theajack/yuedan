@@ -1,0 +1,31 @@
+body{
+ padding-top:40px; 
+}
+#main{
+  padding:0;
+}
+.input-w{
+  background-color: #fff;
+  padding-left: 80px;
+  border-bottom: 1px solid #aaa;
+  padding-bottom: 10px;
+  padding-right: 5px;
+}
+.input:active{
+  background-color:#fff;
+}
+.input-w .create-title{
+  position: absolute;
+  left: 5px;
+  line-height: 35px;
+  font-size: 16px;
+}
+.input-w .input{
+  background-color: #fff;
+  color: #444;
+  height: 35px;
+  border: 1px solid #aaa;
+} 
+.input-w .valid{
+  top: 7px;
+}

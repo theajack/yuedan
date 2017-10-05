@@ -183,7 +183,6 @@ body {
   background-color: rgba(235, 250, 255, 0.7);
   font-size: 16px;
   color: #808080;
-  border-radius: 1px;
   border: 1px solid #1795f9;
   width: 200px;
   height: 40px;
@@ -208,6 +207,7 @@ body {
   margin: 10px 0;
   width: 100%;
   position: relative;
+  overflow:hidden;
 }
 .input-w .icon {
   position: absolute;
