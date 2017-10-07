@@ -6,7 +6,7 @@ J.ready(function(){
     var valid=item.hasAttr("e-valid")?item.attr("e-valid"):null;
     var _title=J.ct("div.editor-title");
       var _span=J.ct("span").txt(title);
-      var _picture=J.ct("i.icon.icon-picture").clk(Editor.openFile);
+      var _picture=J.ct("i.icon.icon-picture").clk(Editor.uploadImg);//(Editor.openFile);
       var _file=J.ct("input.editor-file[type=file][name=file][accept=image/*]").on("change",Editor.uploadImg);
       var _link=J.ct("i.icon.icon-link").clk(Editor.toggleLink);
       var _link_box=J.ct("div.link-box").html('\
@@ -16,7 +16,7 @@ J.ready(function(){
             </div>\
             <div class="input-w">\
               <span class="create-title theme-text">链接地址</span>\
-              <input class="input" type="text" l-name="url" value="http://"/>\
+              <input class="input" type="text" l-name="url" l-valid="notnull"/>\
               <span class="valid"></span>\
             </div>\
             <div class="create-btnw">\
@@ -32,11 +32,13 @@ J.ready(function(){
       }
     _title.append([_span,_picture,_file,_link,_link_box,_face,_face_box])
     var _editor=J.ct("div.editor-box.input[contenteditable=true]");
-    if(name!=null){_editor.attr("j-name","content").attr("j-get=html")}
-    if(valid!=null){_editor.attr("j-name","content").attr("j-get=html")}
+    if(name!=null){_editor.attr("j-name",name).attr("j-get","html")}
+    if(valid!=null){_editor.attr("j-valid",valid).attr("j-get","html")}
     item.append([_title,_editor]);
+    J.initValid(item);
+    initOneValid(J.attr("l-name=url"));
+    initOneValid(J.cls("editor-box"));
   });
-  initOneValid(J.attr("l-name=url"));
 });
 var Editor={
   toggleFace:function(){
@@ -50,18 +52,24 @@ var Editor={
   },
   uploadImg:function(){
     J.show("test upload");
-    var box=this.parent().next()
+    var box=this.parent().next();
     box.append(J.ct("img.editor-img").attr("src","assets/images/404.png"));
+    box.append(J.ct("br"));
   },
   insertLink:function(obj){
-    if(J.validInput(obj.parent().prev().child(1),"url")=="true"){
-      var data=J.get(obj.parent(2),"json","l-name");
+    if(J.validInput(obj.parent().prev().child(1),"l-valid")=="true"){
+      var data=obj.parent(2).get("json","l-name");
       if(data.name==""){
         data.name=data.url;
       }
       var box=obj.parent(3).next();
       box.append(J.ct("span.editor-link[contenteditable=false][onclick=J.jump('"+data.url+"')]").txt(data.name)).html(box.html()+"&nbsp;");
-      obj.parent(2).fadeOut(null,"fast");
+      obj.parent(2).fadeOut(function(aa){
+        aa.set({
+          name:'',
+          url:'http://'
+        },null,"l-name");
+      },"fast");
     }else{
       J.show("链接有误","error")
     }

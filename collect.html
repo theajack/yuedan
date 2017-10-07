@@ -41,8 +41,10 @@
     <div id="wrapper">
       <div class="c-wrapper" id="scroller">
         <div id="pullDown">
-          <span class="pullDownIcon"></span>
-          <span class="pullDownLabel">下拉刷新...</span>
+          <div>
+            <span class="pullDownIcon"></span>
+            <span class="pullDownLabel">下拉刷新...</span>
+          </div>
         </div>
         <div class="item-list" id="main">
             <div class="c-item boy">
@@ -59,7 +61,7 @@
               <div class="c-text">付费方式：各自买单</div>
               
               <div class="tool-box">
-                <i class="tool-left fc-boy icon icon-venus"></i>
+                <i class="tool-left fc-boy icon icon-mars"></i>
                 <i class="tool-left fc-boy icon icon-check-board"></i>
                 <div class="tool-right func-btn" onclick="Box.text.open()">
                   <i class="icon icon-check-board" ></i>
@@ -137,6 +139,7 @@
       J.ready(function(){
         setTheme();
         Box.navi.init("collect");
+        Box.config.fixBody=false;
         initctip();
       });
       function openSearchSelect(obj){

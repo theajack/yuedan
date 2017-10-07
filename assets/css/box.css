@@ -26,14 +26,21 @@
 .box-w.open{
   top:0%;
 }
-.textbox-wrapper{
+.textbox-wrapper,.formbox-wrapper{
   padding:0 15px;
 }
-.textbox-title{
+.textbox-title,.formbox-title{
   line-height: 40px;
   height: 40px;
   font-size: 20px;
   border-bottom:1px dashed #fff;
+}
+.formbox{
+  margin:10px 0;
+}
+.formbox .input{
+  background-color: #fff!important;
+  color:#444;
 }
 .textbox{
   resize: none;
@@ -47,19 +54,19 @@
 .textbox:active {
   border: 1px solid #fff;
 }
-.textbox-btnw,.multibox-btnw,.cascadebox-btnw{
+.textbox-btnw,.multibox-btnw,.cascadebox-btnw,.formbox-btnw{
   margin-bottom: 10px;
   text-align: right;
   height:35px;
 }
-.textbox-btn,.multibox-btn,.cascadebox-btn{
+.textbox-btn,.multibox-btn,.cascadebox-btn,.formbox-btn{
   border: 1px solid #fff;
   margin: 0 5px;
   padding: 2px 10px;
   background-color:transparent;
   line-height: 35px;
 }
-.textbox-btn:last-child,.multibox-btn:last-child{
+.textbox-btn:last-child,.formbox-btn:last-child,.multibox-btn:last-child{
   margin-right:0;
 }
 .multi-list{
@@ -353,4 +360,6 @@
 .body-fixed{
   position:fixed!important;
 }
+
+
 /* end search */

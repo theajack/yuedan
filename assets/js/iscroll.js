@@ -4,6 +4,10 @@ var myScroll,
 function initScroll(){
   J.cls("item-list").css("min-height",(J.height()-80)+"px");
 }
+function initIconPosition(){
+  
+  
+}
 function pullUpAction () {//上拉加载 
   setTimeout(function(){
     J.show("加载");
@@ -15,7 +19,7 @@ function pullUpAction () {//上拉加载
 function pullDownAction () {//下拉刷新 
   setTimeout(function(){
     J.show("刷新");
-    J.reload();
+    //J.reload();
     myScroll.refresh();		
   },500)
 }
@@ -81,7 +85,12 @@ function loaded() {
 			}
 		}
 	});
-	setTimeout(function () { document.getElementById('wrapper').style.left = '0'; }, 800);
+	setTimeout(function () {
+    document.getElementById('wrapper').style.left = '0'; 
+    initIconPosition();
+  }, 800);
+  
+  
 }
 //初始化绑定iScroll控件 
 //document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);

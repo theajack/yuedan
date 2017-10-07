@@ -327,15 +327,24 @@ function toggleViewPw(obj) {
       obj.replaceClass("icon-eye-open","icon-eye-close");
   }
 }
-function initValid() {
-  J.attr("j-valid").exist(function(inputs){
+function initValid(obj) {
+  var list;
+  if(obj!=undefined){
+    list=obj.findAttr("j-valid");
+  }else{
+    list=J.attr("j-valid");
+  }
+  list.exist(function(inputs){
     inputs.each(function(input){
       initOneValid(input);
     });
     J.banDefault();
     J.banValidShow();
     J.onOneFail(function(input,err){
-      input.addClass("unpass").next().addClass("unpass").txt(err);
+      var v=input.addClass("unpass").next().addClass("unpass");
+      if(!v.hasClass("v-fix")){
+        v.txt(err);
+      }
     });
     J.onOnePass(function(input){
       input.removeClass("unpass").next().removeClass("unpass");
@@ -347,14 +356,19 @@ function initOneValid(input){
     stopb(event);
     this.removeClass("unpass").next().removeClass("unpass");
   });
-  var prev=input.prev();
-  if(prev.hasClass("tail")){
-    input.after(J.ct("span.valid.valid-tail").clk(validClick));
-  }else if(prev.hasClass("send-code")){
-    input.after(J.ct("span.valid.valid-btn").clk(validClick));
-  }else{
-    input.after(J.ct("span.valid").clk(validClick));
+  var v=input.next();
+  if(v==undefined||!v.hasClass("valid")){
+    var prev=input.prev();
+    if(prev.hasClass("tail")){
+      v=J.ct("span.valid.valid-tail");
+    }else if(prev.hasClass("send-code")){
+      v=J.ct("span.valid.valid-btn");
+    }else{
+      v=J.ct("span.valid");
+    }
+    input.after(v);
   }
+  v.clk(validClick);
 }
 function validClick(){
   this.prev().click();

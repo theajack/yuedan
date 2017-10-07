@@ -275,6 +275,7 @@ body {
   line-height: 40px;
   width: 110px;
   text-align: center;
+  color: #fff;
 }
 .radio-w {
   display: inline-block;
@@ -355,9 +356,10 @@ body {
   float:left;
 }
 .header .img {
-  height: 40px;
+  height: 34px;
   position: absolute;
-  left: 0px;
+  left: 3px;
+  top: 3px;
 }
 .header .tail {
   float:right;

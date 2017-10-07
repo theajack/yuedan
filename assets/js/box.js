@@ -181,11 +181,9 @@
     text:{//title placeholder data onsubmit oncancel autoClose
       oncancel:function(){},
       onsubmit:function(){},
-      autoClose:true,
       data:null,
       open:function(opt){
         if(opt!=undefined){
-          this.autoClose=J.checkArg(opt.autoClose,true);
           this.oncancel=J.checkArg(opt.oncancel,function(){});
           this.onsubmit=J.checkArg(opt.onsubmit,function(){});
           this.data=opt.data;
@@ -202,14 +200,77 @@
         Box.open("textbox");
       },submit:function(){
         this.onsubmit();
-        if(this.autoClose){
-          this.close();
-        }
+        this.close();
       },cancel:function(){
         this.oncancel();
         this.close();
       },close:function(){
         Box.close("textbox");
+      }
+    },
+    form:{//title placeholder data onsubmit oncancel autoClose
+      oncancel:function(){},
+      onsubmit:function(){},
+      ele:null,
+      type:"",
+      _type:{
+        "pwd":'<div class="input-w theme-bt theme-bl theme-br">\
+                <span class="input-title">旧密码:</span>\
+                <input type="text" class="input" f-name="pwd" j-valid="notnull">\
+                <span class="valid"></span>\
+              </div>\
+              <div class="input-w theme-bt theme-bl theme-br">\
+                <span class="input-title">新密码:</span>\
+                <i class="icon tail icon-eye-open theme-text" onclick="toggleViewPw(this)"></i>\
+                <input type="password" class="input" j-same="pwd" f-name="newPwd" j-valid="notnull">\
+                <span class="valid valid-tail"></span>\
+              </div>\
+              <div class="input-w theme-bt theme-bl theme-br">\
+                <span class="input-title">再次输入:</span>\
+                <i class="icon tail icon-eye-open theme-text" onclick="toggleViewPw(this)"></i>\
+                <input type="password" class="input" j-valid=":pwd">\
+                <span class="valid valid-tail"></span>\
+              </div>',
+        "phone":'<div class="input-w theme-bt theme-bl theme-br">\
+                  <span class="input-title">新手机:</span>\
+                  <input type="text" class="input" f-name="newPhone" j-valid="phone"/>\
+                  <span class="valid"></span>\
+                </div>\
+                <div class="input-w theme-bt theme-bl theme-br">\
+                  <span class="input-title">验证码:</span>\
+                  <div class="send-code theme" onclick="sendCode()">发送验证码</div>\
+                  <input type="password" class="input" f-name="code" j-valid="numberCode[6]"/>\
+                  <span class="valid valid-btn v-fix">*6位数字</span>\
+                </div>'
+      },
+      open:function(opt){//title type oncancel onsubmit
+        if(opt!=undefined){
+          this.oncancel=J.checkArg(opt.oncancel,function(){});
+          this.onsubmit=J.checkArg(opt.onsubmit,function(){});
+          this.type=opt.type;
+        }else{
+          opt={};
+        }
+        var ele=J.cls("formbox-wrapper");
+        if(!ele.exist()){
+          _addFormBox();
+          ele=J.cls("formbox-wrapper");
+        }
+        ele.child(0).txt(J.checkArg(opt.title,"请输入"));
+        this.ele=ele.child(1).html(this._type[opt.type]);
+        J.initValid(this.ele);
+        initValid(this.ele);
+        Box.open("formbox");
+      },submit:function(){
+        this.ele.validate(function(data,box){
+          Box.form.onsubmit(J.toString(box.get("json","f-name")));
+          Box.form.close();
+        });
+      },cancel:function(){
+        this.oncancel();
+        this.close();
+      },close:function(){
+        Box.close("formbox");
       }
     },
     confirm:{
@@ -598,7 +659,7 @@
       ],
       sex:["男","女"],
       school:["同济大学"],
-      schoolYear:[2008,2009,2010,2012,2013,2014,2015,2016,2017],
+      schoolYear:["2017年","2016年","2015年","2014年","2013年","2012年","2010年","2009年","2008年"],
       schoolPart:["四平路校区","嘉定校区","沪北校区","沪西校区"],
       education:["本科","硕士研究生","博士研究生","专科","高职","教职人员"],
       identity:["学生","老师","教职人员"],
@@ -616,8 +677,18 @@
       <div class="textbox-title">请输入</div>\
       <textarea class="textbox input"></textarea>\
       <div class="textbox-btnw">\
-        <span class="textbox-btn btn" onclick="Box.text.confirm()">确认</span>\
+        <span class="textbox-btn btn" onclick="Box.text.submit()">确认</span>\
         <span class="textbox-btn btn" onclick="Box.text.cancel()">取消</span>\
+      </div>')
+    );
+  }
+  function _addFormBox(){
+    J.body().append(J.ct("div.formbox-wrapper.box-w.theme").html('\
+      <div class="formbox-title">请输入</div>\
+      <div class="formbox"></div>\
+      <div class="formbox-btnw">\
+        <span class="formbox-btn btn" onclick="Box.form.submit()">确认</span>\
+        <span class="formbox-btn btn" onclick="Box.form.cancel()">取消</span>\
       </div>')
     );
   }

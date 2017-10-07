@@ -60,7 +60,7 @@
               <div class="c-text">付费方式：各自买单</div>
               
               <div class="tool-box">
-                <i class="tool-left fc-boy icon icon-venus"></i>
+                <i class="tool-left fc-boy icon icon-mars"></i>
                 <i class="tool-left fc-boy icon icon-check-board"></i>
                 <div class="tool-right func-btn" onclick="Box.text.open()">
                   <i class="icon icon-check-board" ></i>
@@ -73,48 +73,62 @@
               </div>
             </div>
             <div class="c-item girl">
-              <span class="c-tip">约体育</span>
-              <span class="c-tip rect">约游泳</span>
               <img class="c-photo" src="assets/images/icon3.png" alt="" />
               <i class="c-set fc-girl icon icon-cog" onclick="openSet(this)"></i>
-              <div class="c-title">Marry：约个人一起去游泳。。</div>
-              <div class="c-text">赴约时间：2017-07-18 下午 3:00</div>
-              <div class="c-text">发布时间：2017-07-13 下午 3:00</div>
-              <div class="c-text">赴约地点：学校游泳馆</div>
-              <div class="c-text">受邀人数：1 人</div>
+              <div class="c-title">Marry点赞了你的帖子</div>
+              <div class="c-text">2017-07-18 下午 3:00</div>
+              <div class="inner-citem border-girl">
+                <i class="icon icon-chat-line fc-girl"></i>
+                <div class="inner-citem-title fc-girl">Luna：听说那谁吸毒被抓啦</div>
+                <div class="inner-citem-text">2017-07-18 下午 3:00</div>
+              </div>
+              
               <div class="tool-box">
                 <i class="tool-left fc-girl icon icon-venus"></i>
-                <i class="tool-left fc-girl icon icon-check-board"></i>
-                <div class="tool-right func-btn">
-                  <i class="icon icon-check-board"></i>
-                  <span>12</span>
-                </div>
-                <div class="tool-right func-btn">
-                  <i class="icon icon-heart" ></i>
-                  <span>12</span>
+              </div>
+            </div>
+            <div class="c-item girl">
+              <img class="c-photo" src="assets/images/icon3.png" alt="" />
+              <i class="c-set fc-girl icon icon-cog" onclick="openSet(this)"></i>
+              <div class="c-title">Marry回复了你的帖子</div>
+              <div class="c-text">2017-07-18 下午 3:00</div>
+              <div class="c-text c-reply">Merry：是的他被抓了</div>
+              <div class="inner-citem border-girl">
+                <i class="icon icon-chat-line fc-girl"></i>
+                <div class="inner-citem-title fc-girl">Luna：听说那谁吸毒被抓啦</div>
+                <div class="inner-citem-text">2017-07-18 下午 3:00</div>
+              </div>
+              
+              <div class="tool-box">
+                <i class="tool-left fc-girl icon icon-venus"></i>
+                <div class="tool-right func-btn" onclick="Box.text.open()">
+                  <i class="icon icon-check-board" ></i>
+                  <span>回复</span>
                 </div>
               </div>
             </div>
             <div class="c-item girl">
-              <span class="c-tip">约体育</span>
-              <span class="c-tip rect">约游泳</span>
               <img class="c-photo" src="assets/images/icon3.png" alt="" />
               <i class="c-set fc-girl icon icon-cog" onclick="openSet(this)"></i>
-              <div class="c-title">Marry：约个人一起去游泳。。</div>
-              <div class="c-text">赴约时间：2017-07-18 下午 3:00</div>
-              <div class="c-text">发布时间：2017-07-13 下午 3:00</div>
-              <div class="c-text">赴约地点：学校游泳馆</div>
-              <div class="c-text">受邀人数：1 人</div>
+              <div class="c-title">Marry点赞了你的个人主页</div>
+              <div class="c-text">2017-07-18 下午 3:00</div>
+              
               <div class="tool-box">
                 <i class="tool-left fc-girl icon icon-venus"></i>
-                <i class="tool-left fc-girl icon icon-check-board"></i>
-                <div class="tool-right func-btn">
-                  <i class="icon icon-check-board"></i>
-                  <span>12</span>
-                </div>
-                <div class="tool-right func-btn">
-                  <i class="icon icon-heart" ></i>
-                  <span>12</span>
+              </div>
+            </div>
+            <div class="c-item girl">
+              <img class="c-photo" src="assets/images/icon3.png" alt="" />
+              <i class="c-set fc-girl icon icon-cog" onclick="openSet(this)"></i>
+              <div class="c-title">Marry给你留言了</div>
+              <div class="c-text">2017-07-18 下午 3:00</div>
+              <div class="c-text c-reply">Merry：你好呀</div>
+              
+              <div class="tool-box">
+                <i class="tool-left fc-girl icon icon-venus"></i>
+                <div class="tool-right func-btn" onclick="Box.text.open()">
+                  <i class="icon icon-chat-dot"></i>
+                  <span>回复</span>
                 </div>
               </div>
             </div>
@@ -138,6 +152,7 @@
         setTheme();
         Box.navi.init("mine");
         Box.search.init();
+        Box.config.fixBody=false;
         J.cls("type-item").clk("changeType(this)");
         initctip();
       });
@@ -158,6 +173,9 @@
         });
         openEle=obj;
         openEle.addClass("icon-spin");
+      }
+      function changeType(obj){
+        active(obj,"theme");
       }
     </script>
   </body>

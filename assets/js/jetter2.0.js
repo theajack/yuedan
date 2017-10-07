@@ -18,6 +18,7 @@ J.reload()
 J.checkValue
 J.validInput 增加添加验证规则参数
 现在会正确验证 j-get属性
+验证与其他项是否相同 :name j-same
 */
 (function(){
   //(function(){var meta=document.createElement("meta");
@@ -2925,23 +2926,38 @@ J.validInput 增加添加验证规则参数
     return false;
   };
   
-  function _validInput(b,v,a) {
-    var v = J.checkArg(v,b.attr("j-valid"));
+  function _validInput(b,v,a,form) {
+    var v = b.attr(J.checkArg(v,"j-valid"));
     var c = "";
-    if(v!=null){
-      var cont=_getGetValue(b);
-      if (v.indexOf("lengthOfAny") != -1) {
-        var e = v.substring(12, v.length - 1).split(",");
-        var f = "lengthOfAny";
-        var d = cont;
-        if (d.length >= parseInt(e[0]) && d.length <= parseInt(e[1])) {
-          c = "true"
-        } else {
-          c = _getValidText(f, e)
+    if(v!=undefined){
+      if(v.has(":")){
+        var sameInput;
+        if(form==undefined){
+          sameInput=J.attr("j-same="+v.substring(1));
+        }else{
+          sameInput=form.findAttr("j-same="+v.substring(1));
         }
-      } else {
-        c = _checkValue(v, cont)
+        if(_getGetValue(b)==_getGetValue(sameInput)){
+          c = "true";
+        }else{
+          c="*两次输入不一致";
+        }
+      }else{
+        var cont=_getGetValue(b);
+        if (v.indexOf("lengthOfAny") != -1) {
+          var e = v.substring(12, v.length - 1).split(",");
+          var f = "lengthOfAny";
+          var d = cont;
+          if (d.length >= parseInt(e[0]) && d.length <= parseInt(e[1])) {
+            c = "true"
+          } else {
+            c = _getValidText(f, e)
+          }
+        } else {
+          c = _checkValue(v, cont)
+        }
       }
+      
       if (c == "true") {
         if (J.useDefaultStyle) {
           b.removeClass("j-unpass").attr("j-value", "");
@@ -2965,14 +2981,14 @@ J.validInput 增加添加验证规则参数
     return c
   };
 
-  function _validInputOfForm(b) {
+  function _validInputOfForm(b,form) {
     if (b.hasClass("j-unpass")) {
       if (_onOneFail != undefined) {
         _onOneFail(b, b.val())
       }
       return b.val()
     } else {
-      return _validInput(b, false)
+      return _validInput(b,"j-valid", false,form)
     }
   };
 
@@ -2983,7 +2999,7 @@ J.validInput 增加添加验证规则参数
     }
   };
 
-  function _validateForm(g, f, c) {
+  function _validateForm(g, f, c,form) {
     var e = [];
     var b = true;
     if (c == undefined) {
@@ -2992,7 +3008,7 @@ J.validInput 增加添加验证规则参数
     var d = true;
     var a = g.select("[j-valid]");
     a.each(function(j) {
-      var h = _validInputOfForm(j);
+      var h = _validInputOfForm(j,g);
       if (h != "true") {
         d = false;
         if (b) {
@@ -3035,6 +3051,7 @@ J.validInput 增加添加验证规则参数
     date: "*格式为XXXX-XX-XX",
     email: "*格式为XXX@XX.com",
     number: "*须为纯数字",
+    numberCode: "*须为纯数字",
     idcard: "*17位数字加一位数字或X",
     length: "*输入长度为",
     url: "*请输入正确的网址",
@@ -3043,6 +3060,7 @@ J.validInput 增加添加验证规则参数
     phone: "*须为11位纯数字",
     letterStart: "*字母开头且长度为",
     range: "*数字不在范围内",
+    money: "*正数且最多两位小数",
     express: "*自定义错误",
   };
   var validTextEn = {
@@ -3050,6 +3068,7 @@ J.validInput 增加添加验证规则参数
     notnull: "*Required",
     date: "*format:XXXX-XX-XX",
     email: "*format:XXX@XX.com",
+    number: "*expect a number",
     number: "*expect a number",
     idcard: "*17 numbers plus a number or X",
     length: "*length between",
@@ -3059,6 +3078,7 @@ J.validInput 增加添加验证规则参数
     phone: "*must be 11 digits",
     letterStart: "*letter start and length",
     range: "*not in range",
+    money: "*not a money number",
     express: "*wrong express",
   };
 
@@ -3071,6 +3091,8 @@ J.validInput 增加添加验证规则参数
         c = 12
       } else if (b.indexOf("length") != -1) {
         c = 7
+      } else if (b.has("numberCode") && b != "numbernumberCode") {
+        c = 11
       } else if (b.has("number") && b != "number") {
         c = 7
       }
@@ -3129,6 +3151,14 @@ J.validInput 增加添加验证规则参数
         e[1] = e[0]
       }
       c = e[1]
+    } else if (f.has("numberCode") && f != "numberCode") {
+      var e = f.substring(11, f.length - 1).split(",");
+      f = "numberCode";
+      d = e[0];
+      if (e[1] == undefined) {
+        e[1] = e[0]
+      }
+      c = e[1]
     } else if (f.has("number") && f != "number") {
       var e = f.substring(7, f.length - 1).split(",");
       f = "number";
@@ -3146,26 +3176,36 @@ J.validInput 增加添加验证规则参数
       return /^\S{0}$/;
       break;
     case "date":
-      return /^(([12]\d{3}-((0[1-9])|(1[0-2]))-((0[1-9])|([1-2]\d)|3(0|1))))$/;
+      return /^[12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[1-2]\d|3(0|1))$/;
       break;
     case "email":
       return /^((\w*@\w*.com))$/;
       break;
     case "number":
       if (d >= 0) {
-        return new RegExp("^-?(\\d{" + d + "," + c + "})$")
+        return new RegExp("^-?([1-9]\\d{" + (d-1) + "," + (c-1) + "})$");
       } else {
-        return /^-?(\d+)$/
+        return /^-?[1-9]\d*$/;
       }
       break;
-    case "float":
-      return /^-?[1-9]\d*.\d*|0.\d*[1-9]\d*$/;
+    case "numberCode":
+      if (d >= 0) {
+        return new RegExp("^\\d{" + d + "," + c + "}$");
+      } else {
+        return /^\d+$/;
+      }
+      break;
+    case "money":
+      return /^([1-9]\d*|[1-9]\d*.\d{1,2}|0.\d{1,2})$/;
+      break;
+    case "decimal":
+      return /^-?([1-9]\d*.\d*|0.\d*[1-9]\d*)$/;
       break;
     case "idcard":
       return /^(\d{17}(X|\d))$/;
       break;
     case "url":
-      return /^((https|http|ftp|rtsp|mms)?:\/\/)[^\s]+$/;
+      return /^([hH][tT]{2}[pP]:\/\/|[hH][tT]{2}[pP][sS]:\/\/)(([A-Za-z0-9-~]+)\.)+([A-Za-z0-9-~\/])+$/;
       break;
     case "phone":
       return /^([1]\d{10})$/;

@@ -4,3 +4,24 @@ body{
 .type-item{
   width:50%!important;
 }
+.inner-citem{
+  position: relative;
+  padding-left: 30px;
+  background-color:#fff!important;
+}
+.inner-citem .icon{
+  font-size: 20px;
+  position: absolute;
+  left: 5px;
+  top: 5px;
+}
+.inner-citem-title{
+  font-size: 15px;
+}
+.inner-citem-text{
+  font-size: 12px;
+}
+.c-reply{
+  font-size:14px;
+  color:#444;
+}

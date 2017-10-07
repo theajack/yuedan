@@ -73,7 +73,7 @@
               <div class="c-text">付费方式：各自买单</div>
               
               <div class="tool-box">
-                <i class="tool-left fc-boy icon icon-venus"></i>
+                <i class="tool-left fc-boy icon icon-mars"></i>
                 <i class="tool-left fc-boy icon icon-check-board"></i>
                 <div class="tool-right func-btn" onclick="Box.text.open()">
                   <i class="icon icon-check-board" ></i>
@@ -245,7 +245,9 @@
         }
       }
       function goCreate(type){
-        J.jump('create_'+type+'.html');
+        J.delay(function(){
+          J.jump('create_'+type+'.html');
+        },200);
       }
     </script>
   </body>

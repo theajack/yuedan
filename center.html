@@ -9,7 +9,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-touch-fullscreen" content="yes">
     <meta content="telephone=no" name="format-detection">
-    <title>约单网--最真实的大学校园交友网站</title>
+    <title>约单网--个人主页</title>
     <link rel="icon" href="assets/images/icon.ico" type="image/x-icon"/>
     <link rel="stylesheet" type="text/css" href="assets/css/theajack.css"/>
     <link rel="stylesheet" type="text/css" href="assets/css/icon.css"/>
@@ -54,69 +54,72 @@
       
       <div class="info-part">
         <div class="input-w theme-bt theme-bl theme-br">
-          <span>昵称:</span>
-          <input type="text" class="input" readonly value="11111111"/>
+          <span class="input-title">昵称:</span>
+          <input type="text" class="input" disabled j-name="nickname" value="11111111"/>
         </div>
         <div class="input-w theme-bt theme-bl theme-br">
-          <span>真实姓名:</span>
-          <input type="text" class="input" readonly value="11111111"/>
+          <span class="input-title">真实姓名:</span>
+          <input type="text" class="input" disabled j-name="realName" value="11111111"/>
         </div>
         <div class="input-w theme-bt theme-bl theme-br">
-          <span>性别:</span>
-          <input type="text" class="input" readonly value="11111111"/>
+          <span class="input-title">性别:</span>
+          <input type="text" class="input" disabled j-name="sex" box-bind="single:sex" value="11111111"/>
         </div>
         <div class="input-w theme-bt theme-bl theme-br">
-          <span>邮箱:</span>
-          <input type="text" class="input" readonly value="11111111"/>
+          <span class="input-title">生日:</span>
+          <input type="text" class="input" disabled j-name="birth" box-bind="date" value="1111-11-11"/>
         </div>
         <div class="input-w theme-bt theme-bl theme-br">
-          <span>学校名称:</span>
-          <input type="text" class="input" readonly value="11111111"/>
+          <span class="input-title">邮箱:</span>
+          <input type="text" class="input" disabled j-name="email" j-valid="email" value="111@qq.com"/>
         </div>
         <div class="input-w theme-bt theme-bl theme-br">
-          <span>所在校区:</span>
-          <input type="text" class="input" readonly value="11111111"/>
+          <span class="input-title">学校名称:</span>
+          <input type="text" class="input" disabled j-name="school" value="11111111"/>
         </div>
         <div class="input-w theme-bt theme-bl theme-br">
-          <span>宿舍楼:</span>
-          <input type="text" class="input" readonly value="11111111"/>
+          <span class="input-title">所在校区:</span>
+          <input type="text" class="input" disabled j-name="schoolPart" box-bind="single:schoolPart" value="11111111"/>
         </div>
         <div class="input-w theme-bt theme-bl theme-br">
-          <span>学院:</span>
-          <input type="text" class="input" readonly value="11111111"/>
+          <span class="input-title">宿舍楼:</span>
+          <input type="text" class="input" disabled j-name="dormitory" value="11111111"/>
         </div>
         <div class="input-w theme-bt theme-bl theme-br">
-          <span>专业:</span>
-          <input type="text" class="input" readonly value="11111111"/>
+          <span class="input-title">学院:</span>
+          <input type="text" class="input" disabled j-name="college" value="11111111"/>
         </div>
         <div class="input-w theme-bt theme-bl theme-br">
-          <span>入学年份:</span>
-          <input type="text" class="input" readonly value="11111111"/>
+          <span class="input-title">专业:</span>
+          <input type="text" class="input" disabled j-name="specialty" value="11111111"/>
         </div>
         <div class="input-w theme-bt theme-bl theme-br">
-          <span>当前学历:</span>
-          <input type="text" class="input" readonly value="11111111"/>
+          <span class="input-title">入学年份:</span>
+          <input type="text" class="input" disabled j-name="schoolYear" box-bind="single:schoolYear" value="11111111"/>
         </div>
         <div class="input-w theme-bt theme-bl theme-br">
-          <span>兴趣爱好:</span>
-          <input type="text" class="input" readonly value="11111111"/>
+          <span class="input-title">当前学历:</span>
+          <input type="text" class="input" disabled j-name="education" box-bind="single:education" value="11111111"/>
         </div>
         <div class="input-w theme-bt theme-bl theme-br">
-          <span>是否单身:</span>
-          <input type="text" class="input" readonly value="11111111"/>
+          <span class="input-title">身份:</span>
+          <input type="text" class="input" disabled j-name="identity" box-bind="single:identity" value="11111111"/>
         </div>
         <div class="input-w theme-bt theme-bl theme-br">
-          <span>祖籍:</span>
-          <input type="text" class="input" readonly value="11111111"/>
+          <span class="input-title">兴趣爱好:</span>
+          <input type="text" class="input" disabled j-name="hobby" box-bind="multi:hobby" value="11111111"/>
+        </div>
+        <div class="input-w theme-bt theme-bl theme-br">
+          <span class="input-title">是否单身:</span>
+          <input type="text" class="input" disabled j-name="isSingle" box-bind="single:bool" value="11111111"/>
         </div>
         <div class="input-w theme-border">
-          <span>邮箱:</span>
-          <input type="text" class="input" readonly value="陈"/>
+          <span class="input-title">祖籍:</span>
+          <input type="text" class="input" disabled j-name="home" value="11111111" box-bind="city"/>
         </div>
         <div class="btn theme" id="saveBtn" onclick="save()">保存</div>
       </div>
     </div>
-    
     <script type="text/javascript" src="assets/js/jetter2.0.js"></script>
     <script type="text/javascript" src="assets/js/common.js"></script>
     <script type="text/javascript" src="assets/js/box.js"></script>
@@ -128,17 +131,33 @@
       function openSelect(){
         Box.select.open({
           items:["修改个人信息","修改登录密码","修改绑定手机"],
-          onselect:[edit,"J.show('暂无')","J.show('暂无')"]
+          onselect:[edit,function(){
+            Box.form.open({
+              title:"修改登录密码",
+              type:"pwd",
+              onsubmit:function(data){
+                J.show(J.toString(data))
+              }
+            });
+          },function(){
+            Box.form.open({
+              title:"修改绑定手机",
+              type:"phone",
+              onsubmit:function(data){
+                J.show(J.toString(data))
+              }
+            });
+          }]
         });
       }
       function edit(){
         J.cls("info-part").addClass("active")
-          .findClass("input").removeAttr("readonly");
+          .findClass("input").removeAttr("disabled");
         J.id("saveBtn").show();
       }
       function save(){
         J.cls("info-part").removeClass("active")
-          .findClass("input").attr("readonly","true");
+          .findClass("input").attr("disabled","true");
         J.id("saveBtn").slideUp();
       }
       function openMsgBox(){

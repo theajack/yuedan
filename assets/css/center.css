@@ -52,24 +52,37 @@ body{
   color:#888;
   background-color: #eaeaea;
 }
-.input-w span{
+.input-w .input-title{
   position:absolute;
   left:10px;
   font-size:16px;
 }
-.input-w input{
+.input-w .input{
   background-color:transparent;
   border:none;
+  transition: background-color 0.3s ease;
+  -webkit-transition: background-color 0.3s ease;
+  -moz-transition: background-color 0.3s ease;
+  -o-transition: background-color 0.3s ease;
+  -ms-transition: background-color 0.3s ease;
 }
 .info-part.active .input{
   background-color:#fff;
   color:#222;
 }
-.input-w input:active{
+.input-w .input:active{
   border:none;
 }
 .input-w .valid{
-  
+  top:1px;
+}
+.input-w .input.unpass{
+  background-color:#ffdfdf!important;
+  border:none;
+}
+
+.valid.valid-btn.unpass{
+  right:120px
 }
 
 

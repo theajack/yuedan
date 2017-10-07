@@ -40,7 +40,7 @@
 .editor-title .icon:last-child{
   margin-right: 0;
 }
-.face-box {
+.face-box,.link-box {
   display:none;
   width: 281px;
   position: absolute;
@@ -52,14 +52,7 @@
   box-shadow: 0 0 10px 2px #aaa;
   z-index:2;
 }
-.link-box {
-  display:none;
-  width: 281px;
-  position: absolute;
-  top: 30px;
-  right: 5px;
-  border: 1px solid #aaa;
-  box-shadow: 0 0 10px 2px #aaa;
+.link-box{
   background-color:#fff;
 }
 .face-item {

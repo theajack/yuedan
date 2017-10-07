@@ -6,17 +6,17 @@ body{
 }
 .input-w{
   background-color: #fff;
-  padding-left: 80px;
+  padding-left: 90px;
   border-bottom: 1px solid #aaa;
   padding-bottom: 10px;
-  padding-right: 5px;
+  padding-right: 15px;
 }
 .input:active{
   background-color:#fff;
 }
 .input-w .create-title{
   position: absolute;
-  left: 5px;
+  left: 15px;
   line-height: 35px;
   font-size: 16px;
 }
@@ -28,4 +28,18 @@ body{
 } 
 .input-w .valid{
   top: 7px;
+}
+.input-w .valid.unpass{
+  right: 20px;
+}
+.editor .valid.unpass{
+  right: 20px;
+}
+.editor{
+  padding:0 15px;
+  padding-bottom:10px;
+}
+.create-btnw{
+  padding:0 15px;
+  padding-bottom:10px;
 }
